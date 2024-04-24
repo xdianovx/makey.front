@@ -7,27 +7,27 @@ import UserBtn from "./ui/Header/UserBtn.vue";
 const links = [
   {
     id: 1,
-    title: "Women",
+    title: "Каталог",
     slug: "/",
   },
   {
     id: 2,
-    title: "Men",
+    title: "Оплата и доставка",
     slug: "/",
   },
   {
     id: 3,
-    title: "New",
+    title: "Гарантия и возврат",
     slug: "/",
   },
   {
     id: 4,
-    title: "Gifts",
+    title: "Магазины",
     slug: "/",
   },
   {
     id: 5,
-    title: "Sale",
+    title: "Контакты",
     slug: "/",
   },
 ];
@@ -79,6 +79,7 @@ const links = [
   left: 0;
   top: 0;
   color: $textWhite;
+  z-index: 5;
 }
 
 .header__wrap {
@@ -87,16 +88,25 @@ const links = [
 }
 
 .header__nav {
-  //margin-left: 356px;
   display: flex;
   align-items: center;
   gap: 56px;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  margin-left: 10%;
+  // position: absolute;
+  // left: 50%;
+  // transform: translateX(-50%);
 }
+
 .header__link {
   line-height: 150%;
+  transition: opacity $trans ease-in-out;
+  &:hover {
+    opacity: 0.4;
+  }
+
+  &.active {
+    opacity: 0.4;
+  }
 }
 
 .header__btns {
