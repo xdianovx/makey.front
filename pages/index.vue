@@ -1,3 +1,5 @@
 <template>
-  <SectionsIndexHero />
+  <main>
+    <SectionsIndexHero />
+  </main>
 </template>

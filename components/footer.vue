@@ -90,6 +90,7 @@
 
 <style lang="scss" scoped>
 .footer {
+  margin-top: auto;
   background: $bgBLack;
   color: $textWhite;
 }

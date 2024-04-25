@@ -4,6 +4,8 @@ import SearchBtn from "./ui/Header/SearchBtn.vue";
 import LikeBtn from "./ui/Header/LikeBtn.vue";
 import UserBtn from "./ui/Header/UserBtn.vue";
 
+const route = useRoute().path;
+
 const links = [
   {
     id: 1,
@@ -36,7 +38,7 @@ const links = [
 <template>
   <header class="header">
     <div class="container">
-      <div class="header__wrap">
+      <div class="header__wrap" :class="{ white: route !== '/' }">
         <NuxtLink to="/" class="header__logo">
           <img src="/assets/img/logo.svg" alt="Makey shop" />
         </NuxtLink>
@@ -73,13 +75,18 @@ const links = [
 
 <style lang="scss" scoped>
 .header {
-  padding: 24px 0;
+  padding: 8px 0;
   position: absolute;
   width: 100%;
   left: 0;
+  background: #000;
   top: 0;
   color: $textWhite;
   z-index: 5;
+
+  &.white {
+    color: $textBlack;
+  }
 }
 
 .header__wrap {
