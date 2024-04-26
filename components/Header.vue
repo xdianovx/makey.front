@@ -79,7 +79,6 @@ const links = [
   position: absolute;
   width: 100%;
   left: 0;
-  background: #000;
   top: 0;
   color: $textWhite;
   z-index: 5;

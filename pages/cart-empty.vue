@@ -8,13 +8,13 @@
             ничего нет
           </h1>
           <nav class="cart-empty__links">
-            <NuxtLink to="/">Акции</NuxtLink>
-            <NuxtLink to="/">Новинки</NuxtLink>
-            <NuxtLink to="/">Для неё</NuxtLink>
-            <NuxtLink to="/">Для него</NuxtLink>
-            <NuxtLink to="/">Сумки</NuxtLink>
-            <NuxtLink to="/">Ремни</NuxtLink>
-            <NuxtLink to="/">Кошельки</NuxtLink>
+            <NuxtLink class="cart-empty__link" to="/">Акции</NuxtLink>
+            <NuxtLink class="cart-empty__link" to="/">Новинки</NuxtLink>
+            <NuxtLink class="cart-empty__link" to="/">Для неё</NuxtLink>
+            <NuxtLink class="cart-empty__link" to="/">Для него</NuxtLink>
+            <NuxtLink class="cart-empty__link" to="/">Сумки</NuxtLink>
+            <NuxtLink class="cart-empty__link" to="/">Ремни</NuxtLink>
+            <NuxtLink class="cart-empty__link" to="/">Кошельки</NuxtLink>
           </nav>
         </div>
       </div>
@@ -32,7 +32,7 @@ const cartCount = ref(3);
 
 <style lang="scss" scoped>
 .cart-empty {
-  padding: 160px 0;
+  padding: 160px 0 0 0;
 }
 
 .cart-empty__wrap {
@@ -52,5 +52,20 @@ const cartCount = ref(3);
   display: flex;
   align-items: center;
   gap: 20px;
+}
+
+.cart-empty__link {
+  position: relative;
+  font-size: 14px;
+  line-height: 130%;
+  &::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background: $textBlack;
+    left: 0;
+    bottom: 0;
+  }
 }
 </style>

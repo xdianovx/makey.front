@@ -59,26 +59,41 @@
 }
 
 .section__title {
-  font-size: 64px;
+  font-size: 77px;
   line-height: 120%;
   font-weight: 400;
 }
 
 .section__subtitle {
-  font-size: 32px;
+  font-size: 39px;
   line-height: 120%;
 }
 
 .section__link {
   margin-top: 24px;
-  display: block;
+  display: inline-block;
   line-height: 120%;
-  text-decoration: underline;
+  padding: 15px 40px;
+  border-radius: 1000px;
+  border: 1px solid rgba(#ffffff, 0.3);
+  background: rgba(#4a4a4a, 0.8);
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    background: rgba(#ffffff, 0.3);
+  }
 }
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 1200px) {
   .section__link {
     margin-top: 18px;
+  }
+
+  .section__title {
+    font-size: 64px;
+  }
+
+  .section__subtitle {
+    font-size: 32px;
   }
 }
 </style>
