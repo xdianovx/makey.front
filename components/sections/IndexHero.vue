@@ -78,6 +78,7 @@
   border: 1px solid rgba(#ffffff, 0.3);
   background: rgba(#4a4a4a, 0.8);
   transition: all 0.3s ease-in-out;
+  margin-bottom: 64px;
   &:hover {
     background: rgba(#ffffff, 0.3);
   }
