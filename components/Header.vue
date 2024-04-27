@@ -3,21 +3,32 @@ import CartBtn from "./ui/Header/CartBtn.vue";
 import SearchBtn from "./ui/Header/SearchBtn.vue";
 import LikeBtn from "./ui/Header/LikeBtn.vue";
 import UserBtn from "./ui/Header/UserBtn.vue";
+import { useIsHomeStore } from "../stores/isHome";
 
 const route = useRoute();
-const isHome = ref(true);
+const store = useIsHomeStore();
+const { isHome, setIsHome, setIsNotHome } = storeToRefs(store);
+
+onMounted(() => {
+  if (route.path === "/") {
+    store.setIsHome();
+  } else {
+    store.setIsNotHome();
+  }
+});
 
 watch(
   () => route.path,
   () => {
-    console.log(route.path);
     if (route.path === "/") {
-      isHome.value = true;
+      store.setIsHome();
     } else {
-      isHome.value = false;
+      store.setIsNotHome();
     }
   }
 );
+
+console.log(isHome);
 
 const links = [
   {
@@ -113,10 +124,7 @@ const links = [
   <header class="header" :class="{ black: !isHome }">
     <div class="container">
       <div class="header__wrap">
-        <NuxtLink to="/" class="header__logo">
-          <img src="/assets/img/logo.svg" alt="Makey shop" />
-        </NuxtLink>
-
+        <UiHeaderLogo />
         <nav class="header__nav">
           <UiNavItem v-for="item in links" :key="item.id" :data="item" />
         </nav>
@@ -124,7 +132,7 @@ const links = [
         <div class="header__btns">
           <SearchBtn />
           <CartBtn />
-          <div class="div"></div>
+          <div class="div" :class="{ black: !isHome }"></div>
           <LikeBtn />
           <UserBtn />
         </div>
@@ -172,11 +180,6 @@ const links = [
   margin-left: 10%;
 }
 
-.header__logo {
-  position: relative;
-  z-index: 2;
-}
-
 .header__btns {
   margin-left: auto;
   display: flex;
@@ -194,6 +197,10 @@ const links = [
   width: 1px;
   height: 24px;
   background: $bgGray;
+
+  &.black {
+    background: $bgBLack;
+  }
 }
 
 //////

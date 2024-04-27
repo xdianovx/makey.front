@@ -164,7 +164,7 @@ onUnmounted(() => {
   gap: 20px 0;
 }
 
-.link-collection {
+.link-collection-anim {
   color: $textWhite;
   transition: color $trans ease-in-out;
 

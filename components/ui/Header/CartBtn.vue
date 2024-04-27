@@ -4,7 +4,7 @@
       width="24"
       height="24"
       viewBox="0 0 24 24"
-      fill="white"
+      :fill="isHome ? 'white' : 'black'"
       xmlns="http://www.w3.org/2000/svg"
     >
       <mask
@@ -27,6 +27,9 @@
   </NuxtLink>
 </template>
 
-<script lang="ts" setup></script>
+<script setup>
+const store = useIsHomeStore();
+const { isHome } = storeToRefs(store);
+</script>
 
 <style></style>
