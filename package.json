@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "gsap": "^3.12.5",
     "normalize.css": "^8.0.1",
     "nuxt": "^3.11.2",
     "sass": "^1.75.0",
