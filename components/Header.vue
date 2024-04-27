@@ -151,7 +151,7 @@ const links = [
 <style lang="scss" scoped>
 .header {
   padding: 8px 0;
-  position: absolute;
+  position: sticky;
   width: 100%;
   left: 0;
   top: 0;
@@ -160,6 +160,7 @@ const links = [
 
   &.black {
     color: $textBlack;
+    background: $bgWhite;
   }
 
   .container {

@@ -77,7 +77,7 @@ const cartCount = ref(3);
 
 .checkout-aside {
   position: sticky;
-  top: 16px;
+  top: 78px;
 }
 
 .checkout-btn {
