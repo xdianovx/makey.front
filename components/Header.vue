@@ -4,7 +4,20 @@ import SearchBtn from "./ui/Header/SearchBtn.vue";
 import LikeBtn from "./ui/Header/LikeBtn.vue";
 import UserBtn from "./ui/Header/UserBtn.vue";
 
-const route = useRoute().path;
+const route = useRoute();
+const isHome = ref(true);
+
+watch(
+  () => route.path,
+  () => {
+    console.log(route.path);
+    if (route.path === "/") {
+      isHome.value = true;
+    } else {
+      isHome.value = false;
+    }
+  }
+);
 
 const links = [
   {
@@ -12,7 +25,16 @@ const links = [
     title: "Каталог",
     slug: "/",
     links: [
-      { id: 1, title: "Сумки", slug: "/bags" },
+      {
+        id: 1,
+        title: "Сумки",
+        slug: "/bags",
+        sublinks: [
+          { id: 1, title: "Все сумки", slug: "/collection/teddy" },
+          { id: 1, title: "Средние сумки", slug: "/collection/teddy" },
+          { id: 1, title: "Мини-сумки", slug: "/collection/teddy" },
+        ],
+      },
       { id: 2, title: "Кошельки", slug: "/bags" },
       { id: 3, title: "Косметички", slug: "/bags" },
       { id: 4, title: "Рюкзаки", slug: "/bags" },
@@ -88,9 +110,9 @@ const links = [
 </script>
 
 <template>
-  <header class="header">
+  <header class="header" :class="{ black: !isHome }">
     <div class="container">
-      <div class="header__wrap" :class="{ white: route !== '/' }">
+      <div class="header__wrap">
         <NuxtLink to="/" class="header__logo">
           <img src="/assets/img/logo.svg" alt="Makey shop" />
         </NuxtLink>
@@ -128,7 +150,7 @@ const links = [
   color: $textWhite;
   z-index: 5;
 
-  &.white {
+  &.black {
     color: $textBlack;
   }
 

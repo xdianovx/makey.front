@@ -113,6 +113,7 @@ onUnmounted(() => {
   top: 0;
   transform: translate(0, -100%);
   z-index: 1;
+  // filter: blur(2px);
 }
 
 .megamenu__wrap {
@@ -124,6 +125,14 @@ onUnmounted(() => {
 
 .link {
   font-weight: 600;
+
+  // opacity: 1;
+  color: $textWhite;
+  transition: color $trans ease-in-out;
+
+  &:hover {
+    color: $textGray;
+  }
 }
 
 .header__link {
@@ -145,6 +154,7 @@ onUnmounted(() => {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  color: $textWhite;
 }
 
 .megamenu__collections {
@@ -152,5 +162,14 @@ onUnmounted(() => {
   display: grid;
   grid-template-columns: repeat(2, 92px);
   gap: 20px 0;
+}
+
+.link-collection {
+  color: $textWhite;
+  transition: color $trans ease-in-out;
+
+  &:hover {
+    color: $textGray;
+  }
 }
 </style>
