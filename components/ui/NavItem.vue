@@ -119,7 +119,7 @@ onUnmounted(() => {
 .megamenu__wrap {
   padding: 86px 0 120px;
   display: flex;
-  gap: 64px;
+  gap: 80px;
   padding-left: calc(10% + 84px);
 }
 

@@ -3,7 +3,7 @@
     <div class="container">
       <div class="overlay"></div>
       <video playsinline autoplay loop muted class="section__video">
-        <source src="/video/home.mp4" type="video/mp4" />
+        <source src="/video/home.mp4" type="video/mp4"/>
       </video>
       <div class="section__wrap">
         <div class="section__info">
@@ -15,14 +15,17 @@
       </div>
     </div>
   </section>
+
 </template>
 
-<script setup></script>
+<script setup>
+</script>
 
 <style lang="scss" scoped>
 .section {
   background: #000;
   height: 100vh;
+  overflow: hidden;
 }
 
 .section__wrap {
@@ -42,6 +45,7 @@
   background: rgba(#000, 0.2);
   z-index: 1;
 }
+
 .section__video {
   width: 100%;
   height: 100%;
@@ -55,7 +59,7 @@
 .section__info {
   margin-top: auto;
   color: $textWhite;
-  padding-bottom: 64px;
+  //padding-bottom: 64px;
 }
 
 .section__title {
@@ -79,6 +83,7 @@
   background: rgba(#4a4a4a, 0.8);
   transition: all 0.3s ease-in-out;
   margin-bottom: 64px;
+
   &:hover {
     background: rgba(#ffffff, 0.3);
   }
