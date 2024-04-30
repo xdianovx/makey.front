@@ -1,9 +1,9 @@
 <template>
   <div class="nav-item" ref="header" @mouseleave="hideMenu">
     <div
-      class="header__link"
-      :class="{ active: isActive }"
-      @mouseenter="showMenu"
+        class="header__link"
+        :class="{ active: isActive }"
+        @mouseenter="showMenu"
     >
       {{ data.title }}
     </div>
@@ -13,11 +13,12 @@
         <div class="megamenu__wrap">
           <nav class="megamenu__list">
             <NuxtLink
-              class="link link-anim"
-              :to="link.slug"
-              v-for="link in data.links"
-              :key="link.id"
-              >{{ link.title }}</NuxtLink
+                class="link link-anim"
+                :to="link.slug"
+                v-for="link in data.links"
+                :key="link.id"
+            >{{ link.title }}
+            </NuxtLink
             >
           </nav>
 
@@ -25,11 +26,12 @@
             <h4 class="link-collection-anim">Коллекции</h4>
             <nav class="megamenu__collections">
               <NuxtLink
-                class="link-collection link-collection-anim"
-                :to="link.slug"
-                v-for="link in data.collections"
-                :key="link.id"
-                >{{ link.title }}</NuxtLink
+                  class="link-collection link-collection-anim"
+                  :to="link.slug"
+                  v-for="link in data.collections"
+                  :key="link.id"
+              >{{ link.title }}
+              </NuxtLink
               >
             </nav>
           </div>
@@ -41,7 +43,7 @@
 
 <script setup>
 import gsap from "gsap";
-import { onMounted, onUnmounted, ref } from "vue";
+import {onMounted, onUnmounted, ref} from "vue";
 
 const isActive = ref(false);
 const props = defineProps(["data"]);
@@ -65,9 +67,7 @@ onMounted(() => {
     const menu = self.selector(".megamenu");
     const link = self.selector(".link-anim");
     const linkCollection = self.selector(".link-collection-anim");
-    // gsap.set(menu, {
-    //   yPercent: -100,
-    // });
+
     tl = gsap.timeline({
       paused: true,
       defaults: {
@@ -78,24 +78,24 @@ onMounted(() => {
     tl.to(menu, {
       y: 0,
     })
-      .from(
-        link,
-        {
-          y: -20,
-          opacity: 0,
-          stagger: 0.02,
-        }
-        // "-=.2"
-      )
-      .from(
-        linkCollection,
-        {
-          y: -20,
-          opacity: 0,
-          stagger: 0.02,
-        },
-        "<"
-      );
+        .from(
+            link,
+            {
+              y: -20,
+              opacity: 0,
+              stagger: 0.02,
+            }
+            // "-=.2"
+        )
+        .from(
+            linkCollection,
+            {
+              y: -20,
+              opacity: 0,
+              stagger: 0.02,
+            },
+            "<"
+        );
   }, header.value);
 });
 
@@ -141,6 +141,7 @@ onUnmounted(() => {
   line-height: 150%;
   cursor: pointer;
   transition: opacity $trans ease-in-out;
+
   &:hover {
     opacity: 0.4;
   }

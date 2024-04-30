@@ -11,6 +11,10 @@
           <p class="section__subtitle">collection</p>
 
           <NuxtLink to="/" class="section__link">Подробнее</NuxtLink>
+          <div class="mobile__links">
+            <NuxtLink to="/woman" class="mobile__link">Women</NuxtLink>
+            <NuxtLink to="/men" class="mobile__link">Men</NuxtLink>
+          </div>
         </div>
       </div>
     </div>
@@ -89,9 +93,13 @@
   }
 }
 
+.mobile__links {
+  display: none;
+}
+
 @media screen and (max-width: 1200px) {
   .section__link {
-    margin-top: 18px;
+    display: none;
   }
 
   .section__title {
@@ -101,5 +109,29 @@
   .section__subtitle {
     font-size: 32px;
   }
+
+  .mobile__links {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 40px;
+    margin-top: 32px;
+
+    a {
+      width: 100%;
+    }
+  }
+
+  .mobile__link {
+    text-align: center;
+    background: rgba($bgWhite, .4);
+    color: $textWhite;
+    -webkit-border-radius: 1000px;
+    -moz-border-radius: 1000px;
+    border-radius: 1000px;
+    padding: 15px;
+    border: 1px solid rgba($bgWhite, .3);
+
+  }
+
 }
 </style>
