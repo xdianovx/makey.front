@@ -4,11 +4,13 @@ import {useNavOpen} from "~/stores/navOpen.js";
 const state = useNavOpen()
 const {isNavOpen} = storeToRefs(state)
 
+const isHomeStore = useIsHomeStore();
+const {isHome} = storeToRefs(isHomeStore);
 
 </script>
 
 <template>
-  <button class="burger" :class="{active: isNavOpen}" @click="state.toggleNav">
+  <button class="burger" :class="{active: isNavOpen, white: !isHome}" @click="state.toggleNav">
     <span class="top"></span>
     <span class="bottom"></span>
   </button>
@@ -41,6 +43,17 @@ const {isNavOpen} = storeToRefs(state)
 
       bottom: 17px;
       transform: rotate(-45deg) translateX(-50%);
+    }
+
+    &.white span {
+      background: $bgWhite;
+    }
+  }
+
+  &.white {
+    span {
+
+      background: $bgBLack;
     }
   }
 }

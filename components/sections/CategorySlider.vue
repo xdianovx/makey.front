@@ -25,6 +25,7 @@ const props = defineProps({
             :slidesPerView="4"
             :space-between="16"
             :modules="[Navigation]"
+            :speed="400"
             :navigation="{
               prevEl: prev,
               nextEl: next,
@@ -90,18 +91,47 @@ const props = defineProps({
 .slider-arrow-next {
   position: absolute;
   z-index: 3;
-  top: 45%;
+  top: 0;
   right: 0;
   padding: 16px;
+  height: 100%;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+
+  svg {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 6px;
+  }
+
+  &.swiper-button-disabled {
+    display: none;
+  }
 }
 
 .slider-arrow-prev {
   position: absolute;
   z-index: 1;
-  top: 45%;
+  top: 0;
   left: 0;
   padding: 16px;
+  height: 100%;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(270deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+
+  svg {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 6px;
+
+  }
+
+  &.swiper-button-disabled {
+    display: none;
+  }
 }
 </style>

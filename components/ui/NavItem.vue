@@ -1,52 +1,12 @@
-<template>
-  <div class="nav-item" ref="header" @mouseleave="hideMenu">
-    <div
-        class="header__link"
-        :class="{ active: isActive }"
-        @mouseenter="showMenu"
-    >
-      {{ data.title }}
-    </div>
-
-    <div class="megamenu">
-      <div class="container">
-        <div class="megamenu__wrap">
-          <nav class="megamenu__list">
-            <NuxtLink
-                class="link link-anim"
-                :to="link.slug"
-                v-for="link in data.links"
-                :key="link.id"
-            >{{ link.title }}
-            </NuxtLink
-            >
-          </nav>
-
-          <div class="megamenu__collections_wrap">
-            <h4 class="link-collection-anim">Коллекции</h4>
-            <nav class="megamenu__collections">
-              <NuxtLink
-                  class="link-collection link-collection-anim"
-                  :to="link.slug"
-                  v-for="link in data.collections"
-                  :key="link.id"
-              >{{ link.title }}
-              </NuxtLink
-              >
-            </nav>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</template>
-
 <script setup>
 import gsap from "gsap";
 import {onMounted, onUnmounted, ref} from "vue";
 
+const store = useIsHomeStore();
+
 const isActive = ref(false);
 const props = defineProps(["data"]);
+
 
 const header = ref();
 let ctx;
@@ -67,6 +27,7 @@ onMounted(() => {
     const menu = self.selector(".megamenu");
     const link = self.selector(".link-anim");
     const linkCollection = self.selector(".link-collection-anim");
+
 
     tl = gsap.timeline({
       paused: true,
@@ -104,15 +65,79 @@ onUnmounted(() => {
 });
 </script>
 
+
+<template>
+  <div class="nav-item" ref="header" @mouseleave="hideMenu">
+    <div
+        class="header__link"
+        :class="{ active: isActive }"
+        @mouseenter="showMenu"
+    >
+      {{ data.title }}
+    </div>
+
+    <div class="megamenu" :class="{white: !store.isHome}">
+      <div class="container">
+        <div class="megamenu__wrap">
+          <nav class="megamenu__list">
+            <NuxtLink
+                class="link link-anim"
+                :to="link.slug"
+                v-for="link in data.links"
+                :key="link.id"
+            >{{ link.title }}
+            </NuxtLink
+            >
+          </nav>
+
+          <div class="megamenu__collections_wrap">
+            <h4 class="link-collection-anim">Коллекции</h4>
+            <nav class="megamenu__collections">
+              <NuxtLink
+                  class="link-collection link-collection-anim"
+                  :to="link.slug"
+                  v-for="link in data.collections"
+                  :key="link.id"
+              >{{ link.title }}
+              </NuxtLink
+              >
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+
 <style lang="scss" scoped>
 .megamenu {
-  background: rgba(#000000, 0.7);
+  background: #0c0c0c;
   position: absolute;
   left: 0;
   width: 100%;
   top: 0;
   transform: translate(0, -100%);
   z-index: 1;
+
+  &.white {
+    background: #fff;
+
+    .link {
+      color: $textBlack;
+    }
+
+    .link-collection {
+      color: $textBlack;
+
+    }
+
+    .link-collection-anim {
+      color: $textBlack;
+
+    }
+  }
+
   // filter: blur(2px);
 }
 

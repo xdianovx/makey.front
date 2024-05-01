@@ -11,6 +11,10 @@ const {isNavOpen} = storeToRefs(isOpenState)
 let ctx
 let tl
 const nav = ref()
+const route = useRoute()
+// watch(route, () => {
+//   isOpenState.closeNav()
+// }, {immediate: true})
 
 onMounted(() => {
   ctx = gsap.context((self) => {
@@ -55,7 +59,7 @@ onUnmounted(() => {
         </nav>
 
         <div class="menu-bottom">
-          <NuxtLink to="/cart" class="cart-btn">
+          <NuxtLink to="/cart" @click="isOpenState.closeNav()" class="cart-btn">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="#000" xmlns="http://www.w3.org/2000/svg">
               <mask id="mask0_3001_29014" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24"
                     height="24">
