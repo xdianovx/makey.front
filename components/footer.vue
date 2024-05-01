@@ -1,5 +1,7 @@
 <script setup>
 
+import MobileNavLink from "~/components/ui/Footer/MobileNavLink.vue";
+
 const store = useIsHomeStore();
 const {isHome} = storeToRefs(store);
 const links = [
@@ -62,7 +64,6 @@ const links = [
           </div>
         </div>
 
-        <!--        -->
         <nav class="footer__nav">
           <div class="nav-item" v-for="item in links" :key="item.id">
             <h4 class="nav-item__title">{{ item.title }}</h4>
@@ -70,6 +71,8 @@ const links = [
               <NuxtLink :to="link.link">{{ link.title }}</NuxtLink>
             </div>
           </div>
+
+          <MobileNavLink v-for="item in links" :key="item.id" :data="item"/>
         </nav>
       </div>
 
@@ -105,7 +108,7 @@ const links = [
 .footer__nav {
   display: flex;
   justify-content: space-between;
-  gap: 64px;
+  gap: 80px;
 }
 
 
@@ -133,9 +136,6 @@ const links = [
   }
 }
 
-.nav-item {
-  width: 210px;
-}
 
 .nav-item__title {
   font-size: 14px;
@@ -170,16 +170,13 @@ const links = [
   opacity: .3;
 }
 
-.footer__nav-mob {
-  display: none;
-}
 
 @media screen and (max-width: 1280px) {
   .footer {
     padding: 40px 0 64px;
   }
   .footer__nav {
-    display: none;
+    gap: 64px;
   }
 
   .footer__nav-mob {
@@ -188,15 +185,55 @@ const links = [
 
   .footer__bottom {
     display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 64px;
+  }
+
+  .footer__copy {
+    flex-shrink: 0;
+
+    span {
+      color: #808080;
+    }
+  }
+
+  .footer__policy {
+    text-align: center;
+    margin-top: 4px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .footer__wrap {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .footer__nav {
+    justify-content: space-between;
+    gap: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .footer__nav {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .footer__bottom {
     flex-direction: column;
     align-items: center;
     gap: 8px;
   }
 
-  .footer__copy {
-    span {
-      color: #808080;
-    }
+  .footer__policy {
+    margin-top: 0;
   }
+  .nav-item {
+    display: none;
+  }
+
 }
 </style>
