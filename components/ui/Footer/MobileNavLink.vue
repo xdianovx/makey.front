@@ -2,6 +2,8 @@
 import gsap from 'gsap'
 import {onUnmounted, onMounted} from "vue";
 
+const store = useIsHomeStore();
+const {isHome} = storeToRefs(store);
 const props = defineProps(['data'])
 const isOpen = ref(false)
 
@@ -49,7 +51,7 @@ const toggleContent = () => {
 <template>
   <div class="nav-item-mobile" ref="container">
     <!--  Head -->
-    <div class="nav-item-mobile__head" @click="toggleContent">
+    <div class="nav-item-mobile__head" :class="{white: !isHome}" @click="toggleContent">
       <div class="nav-item-mobile__title">{{ data.title }}</div>
       <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path
@@ -59,7 +61,7 @@ const toggleContent = () => {
     </div>
 
     <!-- Content -->
-    <div class="content">
+    <div class="content" :class="{white: !isHome}">
       <nav class="content-nav">
         <NuxtLink v-for="link in data.links" class="content-link">{{ link.title }}</NuxtLink>
       </nav>
@@ -87,6 +89,14 @@ const toggleContent = () => {
     svg {
       fill: $bgWhite;
     }
+
+    &.white {
+      svg {
+
+        fill: $bgBLack;
+      }
+
+    }
   }
 
   .nav-item-mobile__title {
@@ -111,6 +121,12 @@ const toggleContent = () => {
   .content {
     height: 0;
     overflow: hidden;
+
+    &.white {
+      .content-link {
+        color: rgba($textBlack, .7);
+      }
+    }
   }
 }
 </style>
