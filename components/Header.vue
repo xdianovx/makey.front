@@ -3,18 +3,17 @@ import CartBtn from "./ui/Header/CartBtn.vue";
 import SearchBtn from "./ui/Header/SearchBtn.vue";
 import LikeBtn from "./ui/Header/LikeBtn.vue";
 import UserBtn from "./ui/Header/UserBtn.vue";
-import {useIsHomeStore} from "../stores/isHome";
-import {useNavOpen} from "~/stores/navOpen.js";
+import { useIsHomeStore } from "../stores/isHome";
+import { useNavOpen } from "~/stores/navOpen.js";
 import MobileNav from "~/components/MobileNav.vue";
-import {useNavigationLinks} from "~/stores/navigationLinks.js";
+import { useNavigationLinks } from "~/stores/navigationLinks.js";
 
-const linksStore = useNavigationLinks()
-const {links} = storeToRefs(linksStore)
+const linksStore = useNavigationLinks();
+const { links } = storeToRefs(linksStore);
 const route = useRoute();
 const store = useIsHomeStore();
 
-const {isHome} = storeToRefs(store);
-
+const { isHome } = storeToRefs(store);
 
 onMounted(() => {
   if (route.path === "/") {
@@ -25,61 +24,82 @@ onMounted(() => {
 });
 
 watch(
-    () => route.path,
-    () => {
-      if (route.path === "/") {
-        store.setIsHome();
-      } else {
-        store.setIsNotHome();
-      }
+  () => route.path,
+  () => {
+    if (route.path === "/") {
+      store.setIsHome();
+    } else {
+      store.setIsNotHome();
     }
+  }
 );
 
-const activeNavCategory = ref('')
-const isMainMobileOpen = ref(true)
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
-const openNavCategory = (id) => {
-  activeNavCategory.value = id
-  isMainMobileOpen.value = false
-  console.log(activeNavCategory.value)
-}
+const main = ref();
+let ctx;
+let tl;
 
+onMounted(() => {
+  // ctx = gsap.context((self) => {
+  //   const header = self.selector(".header");
+  //   tl = gsap.timeline({
+  //     defaults: { ease: "none" },
+  //     scrollTrigger: {
+  //       trigger: header,
+  //       start: "top top",
+  //       end: "bottom bottom",
+  //       scrub: true,
+  //     },
+  //   });
+  //   tl.to(header, {
+  //     yPercent: 0,
+  //     opacity: 0,
+  //   });
+  // }, main.value); // <- Scope!
+});
+
+onUnmounted(() => {
+  ctx.revert(); // <- Easy Cleanup!
+});
+
+const activeNavCategory = ref("");
+const isMainMobileOpen = ref(true);
 </script>
 
 <template>
-  <header class="header" :class="{ black: !isHome }">
-    <MobileNav/>
+  <header class="header" ref="main" :class="{ black: !isHome }">
+    <MobileNav />
     <div class="container">
       <div class="header__wrap">
-        <UiHeaderLogo/>
+        <UiHeaderLogo />
         <nav class="header__nav">
-          <UiNavItem v-for="item in links" :key="item.id" :data="item"/>
+          <UiNavItem v-for="item in links" :key="item.id" :data="item" />
         </nav>
 
         <div class="header__btns">
-          <SearchBtn/>
-          <CartBtn/>
+          <SearchBtn />
+          <CartBtn />
           <div class="div" :class="{ black: !isHome }"></div>
-          <LikeBtn/>
-          <UserBtn/>
+          <LikeBtn />
+          <UserBtn />
         </div>
 
         <div class="header__btns-mob">
-          <SearchBtn/>
-          <UiBurger/>
+          <SearchBtn />
+          <UiBurger />
         </div>
       </div>
     </div>
-
-
   </header>
 </template>
-
 
 <style lang="scss" scoped>
 .header {
   padding: 8px 0;
-  position: absolute;
+  position: fixed;
   width: 100%;
   left: 0;
   top: 0;
@@ -132,8 +152,10 @@ const openNavCategory = (id) => {
   }
 }
 
-
 @media screen and (max-width: 1280px) {
+  .header {
+    padding: 14px 0;
+  }
   .header__nav {
     display: none;
   }
@@ -147,6 +169,5 @@ const openNavCategory = (id) => {
     margin-left: auto;
     gap: 24px;
   }
-
 }
 </style>

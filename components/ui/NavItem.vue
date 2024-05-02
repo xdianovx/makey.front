@@ -1,12 +1,11 @@
 <script setup>
 import gsap from "gsap";
-import {onMounted, onUnmounted, ref} from "vue";
+import { onMounted, onUnmounted, ref } from "vue";
 
 const store = useIsHomeStore();
 
 const isActive = ref(false);
 const props = defineProps(["data"]);
-
 
 const header = ref();
 let ctx;
@@ -28,7 +27,6 @@ onMounted(() => {
     const link = self.selector(".link-anim");
     const linkCollection = self.selector(".link-collection-anim");
 
-
     tl = gsap.timeline({
       paused: true,
       defaults: {
@@ -39,24 +37,20 @@ onMounted(() => {
     tl.to(menu, {
       y: 0,
     })
-        .from(
-            link,
-            {
-              y: -20,
-              opacity: 0,
-              stagger: 0.02,
-            }
-            // "-=.2"
-        )
-        .from(
-            linkCollection,
-            {
-              y: -20,
-              opacity: 0,
-              stagger: 0.02,
-            },
-            "<"
-        );
+      .from(link, {
+        y: -20,
+        opacity: 0,
+        stagger: 0.02,
+      })
+      .from(
+        linkCollection,
+        {
+          y: -20,
+          opacity: 0,
+          stagger: 0.02,
+        },
+        "<"
+      );
   }, header.value);
 });
 
@@ -65,42 +59,40 @@ onUnmounted(() => {
 });
 </script>
 
-
 <template>
   <div class="nav-item" ref="header" @mouseleave="hideMenu">
-    <div
-        class="header__link"
-        :class="{ active: isActive }"
-        @mouseenter="showMenu"
+    <NuxtLink
+      :to="data.slug"
+      class="header__link"
+      :class="{ active: isActive }"
+      @mouseenter="showMenu"
     >
       {{ data.title }}
-    </div>
+    </NuxtLink>
 
-    <div class="megamenu" :class="{white: !store.isHome}">
+    <div class="megamenu" :class="{ white: !store.isHome }">
       <div class="container">
         <div class="megamenu__wrap">
           <nav class="megamenu__list">
             <NuxtLink
-                class="link link-anim"
-                :to="link.slug"
-                v-for="link in data.links"
-                :key="link.id"
-            >{{ link.title }}
-            </NuxtLink
-            >
+              class="link link-anim"
+              :to="link.slug"
+              v-for="link in data.links"
+              :key="link.id"
+              >{{ link.title }}
+            </NuxtLink>
           </nav>
 
           <div class="megamenu__collections_wrap">
             <h4 class="link-collection-anim">Коллекции</h4>
             <nav class="megamenu__collections">
               <NuxtLink
-                  class="link-collection link-collection-anim"
-                  :to="link.slug"
-                  v-for="link in data.collections"
-                  :key="link.id"
-              >{{ link.title }}
-              </NuxtLink
-              >
+                class="link-collection link-collection-anim"
+                :to="link.slug"
+                v-for="link in data.collections"
+                :key="link.id"
+                >{{ link.title }}
+              </NuxtLink>
             </nav>
           </div>
         </div>
@@ -108,7 +100,6 @@ onUnmounted(() => {
     </div>
   </div>
 </template>
-
 
 <style lang="scss" scoped>
 .megamenu {
@@ -129,12 +120,10 @@ onUnmounted(() => {
 
     .link-collection {
       color: $textBlack;
-
     }
 
     .link-collection-anim {
       color: $textBlack;
-
     }
   }
 
