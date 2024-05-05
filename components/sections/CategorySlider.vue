@@ -7,6 +7,7 @@ const next = ref(null);
 const props = defineProps({
   title: String,
   count: Number,
+  slug: String,
 });
 </script>
 
@@ -15,7 +16,7 @@ const props = defineProps({
     <div class="container">
       <div class="section-top">
         <h2 class="h2">{{ title }}</h2>
-        <NuxtLink :to="`/`" class="top-link">Смотреть все</NuxtLink>
+        <NuxtLink :to="`${slug}`" class="top-link">Смотреть все</NuxtLink>
       </div>
 
       <div class="product-wrap">

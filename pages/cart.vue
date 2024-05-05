@@ -26,7 +26,7 @@
       </div>
     </section>
 
-    <SectionsSimilarProducts />
+    <SectionsSimilarProducts title="Добавьте товары в избранное" />
 
     <section style="margin-top: 140px"></section>
   </main>

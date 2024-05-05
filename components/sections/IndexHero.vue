@@ -1,37 +1,64 @@
-<template>
-  <section class="section">
-    <div class="container">
-      <div class="overlay"></div>
-      <video playsinline autoplay loop muted class="section__video">
-        <source src="/video/home.mp4" type="video/mp4"/>
-      </video>
-      <div class="section__wrap">
-        <div class="section__info">
-          <h2 class="section__title">Evolution</h2>
-          <p class="section__subtitle">collection</p>
+<script setup>
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 
-          <NuxtLink to="/" class="section__link">Подробнее</NuxtLink>
-          <div class="mobile__links">
-            <NuxtLink to="/woman" class="mobile__link">Women</NuxtLink>
-            <NuxtLink to="/men" class="mobile__link">Men</NuxtLink>
+gsap.registerPlugin([ScrollTrigger, ScrollToPlugin]);
+const section = ref(null);
+let ctx;
+let tl;
+
+onMounted(() => {
+  ctx = gsap.context((self) => {
+    const sections = self.selector(".section");
+  }, section.value);
+
+  console.log(window);
+});
+
+onUnmounted(() => {
+  ctx.revert();
+});
+</script>
+
+<template>
+  <div ref="section">
+    <section class="section" v-for="item in 4">
+      <div class="container">
+        <div class="screen">
+          <div class="overlay"></div>
+          <video playsinline autoplay loop muted class="section__video">
+            <source src="/video/home.mp4" type="video/mp4" />
+          </video>
+          <div class="section__wrap">
+            <div class="section__info">
+              <h2 class="section__title">Evolution</h2>
+              <p class="section__subtitle">collection</p>
+
+              <NuxtLink to="/" class="section__link">Подробнее</NuxtLink>
+              <div class="mobile__links">
+                <NuxtLink to="/woman" class="mobile__link">Women</NuxtLink>
+                <NuxtLink to="/men" class="mobile__link">Men</NuxtLink>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
+    </section>
+  </div>
 </template>
-
-<script setup>
-</script>
 
 <style lang="scss" scoped>
 .section {
   background: #000;
   height: 100vh;
+  position: relative;
   overflow: hidden;
 }
 
+.screen {
+  height: 100%;
+}
 .section__wrap {
   height: 100%;
   display: flex;
@@ -123,15 +150,13 @@
 
   .mobile__link {
     text-align: center;
-    background: rgba($bgWhite, .4);
+    background: rgba($bgWhite, 0.4);
     color: $textWhite;
     -webkit-border-radius: 1000px;
     -moz-border-radius: 1000px;
     border-radius: 1000px;
     padding: 15px;
-    border: 1px solid rgba($bgWhite, .3);
-
+    border: 1px solid rgba($bgWhite, 0.3);
   }
-
 }
 </style>

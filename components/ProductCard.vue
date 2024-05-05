@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <NuxtLink to="/product" class="card">
     <div class="new-tag">NEW</div>
 
     <button class="like-btn">
@@ -57,7 +57,7 @@
       <h3 class="title">Брелок для сумки</h3>
       <div class="price">29 BYN</div>
     </div>
-  </div>
+  </NuxtLink>
 </template>
 
 <script setup>
