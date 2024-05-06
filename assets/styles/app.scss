@@ -21,5 +21,10 @@ body {
   }
 }
 
+.fancybox__backdrop {
+  background: #000 !important;
+  opacity: 0.3 !important;
+}
+
 @media screen and (max-width: 1280px) {
 }

@@ -23,28 +23,30 @@ onUnmounted(() => {
 
 <template>
   <div ref="section">
-    <section class="section" v-for="item in 4">
-      <div class="container">
-        <div class="screen">
-          <div class="overlay"></div>
-          <video playsinline autoplay loop muted class="section__video">
-            <source src="/video/home.mp4" type="video/mp4" />
-          </video>
-          <div class="section__wrap">
-            <div class="section__info">
-              <h2 class="section__title">Evolution</h2>
-              <p class="section__subtitle">collection</p>
+    <ClientOnly>
+      <section class="section" v-for="item in 4">
+        <div class="container">
+          <div class="screen">
+            <div class="overlay"></div>
+            <video playsinline autoplay loop muted class="section__video">
+              <source src="/video/home.mp4" type="video/mp4" />
+            </video>
+            <div class="section__wrap">
+              <div class="section__info">
+                <h2 class="section__title">Evolution</h2>
+                <p class="section__subtitle">collection</p>
 
-              <NuxtLink to="/" class="section__link">Подробнее</NuxtLink>
-              <div class="mobile__links">
-                <NuxtLink to="/woman" class="mobile__link">Women</NuxtLink>
-                <NuxtLink to="/men" class="mobile__link">Men</NuxtLink>
+                <NuxtLink to="/" class="section__link">Подробнее</NuxtLink>
+                <div class="mobile__links">
+                  <NuxtLink to="/woman" class="mobile__link">Women</NuxtLink>
+                  <NuxtLink to="/men" class="mobile__link">Men</NuxtLink>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </ClientOnly>
   </div>
 </template>
 

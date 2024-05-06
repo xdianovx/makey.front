@@ -1,36 +1,39 @@
 <template>
   <div class="wrap">
-    <Header/>
-    <slot/>
+    <Header />
+    <slot />
 
-    <Footer/>
+    <Footer />
   </div>
 </template>
 
 <script setup>
-import {useNavOpen} from "~/stores/navOpen.js";
+import { useNavOpen } from "~/stores/navOpen.js";
 import devServerLogs from "#app/plugins/dev-server-logs.js";
+import { useProductInfoOpen } from "~/stores/productInfo";
 
-const isNavOpenState = useNavOpen()
-const {isNavOpen} = storeToRefs(isNavOpenState)
-console.log(isNavOpen.value)
+const isNavOpenState = useNavOpen();
+const isProductInfoOpenState = useProductInfoOpen();
+
+const { isNavOpen } = storeToRefs(isNavOpenState);
+const { isOpen: isProductInfoOpen } = storeToRefs(isProductInfoOpenState);
 
 useHead({
   bodyAttrs: {
     class: () => {
-      if (isNavOpen.value) {
-        return 'active'
+      if (isNavOpen.value || isProductInfoOpen.value) {
+        return "active";
       } else {
-        return ''
+        return "";
       }
-    }
-  }
-})
+    },
+  },
+});
 </script>
 
 <style lang="scss">
 body {
-  //overflow: hidden;
+  overflow-x: hidden;
 }
 
 .wrap {

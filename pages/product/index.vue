@@ -1,13 +1,23 @@
+<script lang="ts" setup>
+import ApplePayBtn from "~/components/ui/ApplePayBtn.vue";
+import { useProductInfoOpen } from "~/stores/productInfo";
+
+const infoStore = useProductInfoOpen();
+</script>
+
 <template>
   <main>
     <section class="section">
+      <ProductInfo />
+
       <div class="images">
-        <img src="/img/product-page/1.jpg" alt="" />
-        <img src="/img/product-page/2.jpg" alt="" />
-        <img src="/img/product-page/3.jpg" alt="" />
-        <img src="/img/product-page/4.jpg" alt="" />
-        <img src="/img/product-page/5.jpg" alt="" />
-        <img src="/img/product-page/6.jpg" alt="" />
+        <a
+          :href="`/img/product-page/${idx + 1}.jpg`"
+          data-fancybox="a"
+          v-for="(item, idx) in 6"
+        >
+          <img :src="`/img/product-page/${idx + 1}.jpg`" alt="" />
+        </a>
       </div>
 
       <div class="info">
@@ -51,7 +61,7 @@
               </svg>
             </button>
 
-            <button class="info-link">
+            <button class="info-link" @click="infoStore.open">
               <p>Описание и детали</p>
               <svg
                 width="16"
@@ -95,10 +105,6 @@
   </main>
 </template>
 
-<script lang="ts" setup>
-import ApplePayBtn from "~/components/ui/ApplePayBtn.vue";
-</script>
-
 <style scoped lang="scss">
 .section {
   margin-top: 100px;
@@ -119,6 +125,14 @@ import ApplePayBtn from "~/components/ui/ApplePayBtn.vue";
   display: flex;
   flex-direction: column;
   gap: 8px;
+
+  a {
+    display: block;
+    width: 100%;
+    img {
+      width: 100%;
+    }
+  }
 }
 
 .info {
