@@ -198,7 +198,7 @@ onUnmounted(() => {
   height: 100vh;
   right: -100%;
   transition: all 0.3s ease-in-out;
-  transition-delay: 100ms;
+  transition-delay: 50ms;
   top: 0;
   bottom: 0;
   z-index: 51;
@@ -300,5 +300,15 @@ onUnmounted(() => {
 
 .material-value {
   font-size: 14px;
+}
+
+@media screen and (max-width: 768px) {
+  .info {
+    padding: 40px 8px 40px 16px;
+  }
+
+  .info-wrap {
+    padding-right: 16px;
+  }
 }
 </style>

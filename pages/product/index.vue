@@ -1,6 +1,8 @@
 <script lang="ts" setup>
+import type { Swiper, SwiperSlide } from "swiper/vue";
 import ApplePayBtn from "~/components/ui/ApplePayBtn.vue";
 import { useProductInfoOpen } from "~/stores/productInfo";
+import { Pagination } from "swiper/modules";
 
 const infoStore = useProductInfoOpen();
 </script>
@@ -9,6 +11,21 @@ const infoStore = useProductInfoOpen();
   <main>
     <section class="section">
       <ProductInfo />
+
+      <ClientOnly>
+        <div class="images-mobile">
+          <Swiper
+            :slides-per-view="1"
+            class="mobile-slider"
+            :modules="[Pagination]"
+            :pagination="true"
+          >
+            <SwiperSlide v-for="(item, idx) in 6">
+              <img :src="`/img/product-page/${idx + 1}.jpg`" alt="" />
+            </SwiperSlide>
+          </Swiper>
+        </div>
+      </ClientOnly>
 
       <div class="images">
         <a
@@ -22,7 +39,7 @@ const infoStore = useProductInfoOpen();
 
       <div class="info">
         <div class="info-wrap">
-          <UiBreadcrumbs />
+          <UiBreadcrumbs class="breadcrumbs" />
 
           <div class="info__title">
             <h1 class="product-title">Сумка Evolution Large</h1>
@@ -77,7 +94,7 @@ const infoStore = useProductInfoOpen();
             </button>
 
             <button class="info-link">
-              <p>Отзвы <span>3</span></p>
+              <p>Отзывы <span>3</span></p>
               <svg
                 width="16"
                 height="16"
@@ -91,6 +108,8 @@ const infoStore = useProductInfoOpen();
               </svg>
             </button>
           </div>
+
+          <div class="div-mobile"></div>
         </div>
       </div>
     </section>
@@ -99,7 +118,7 @@ const infoStore = useProductInfoOpen();
       <div class="div page-div"></div>
     </div>
 
-    <SectionsSimilarProducts title="Смотрите также" />
+    <SectionsSimilarProducts title="Смотрите также" class="upsale" />
 
     <Spacer />
   </main>
@@ -220,5 +239,129 @@ const infoStore = useProductInfoOpen();
   span {
     color: rgba($textBlack, 0.3);
   }
+}
+
+.images-mobile {
+  display: none;
+}
+
+.div-mobile {
+  display: none;
+}
+
+@media screen and (max-width: 1280px) {
+  .section {
+    margin-top: 56px;
+  }
+  .info {
+    justify-content: flex-start;
+    padding-top: 40px;
+  }
+
+  .info-wrap {
+    max-width: 320px;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .info {
+    padding: 64px 40px;
+  }
+  .info-wrap {
+    max-width: none;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .info {
+    padding: 64px 16px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .section {
+    flex-direction: column;
+    padding-right: 0;
+  }
+
+  .breadcrumbs {
+    display: none;
+  }
+  .images {
+    display: none;
+  }
+
+  .info {
+    padding-top: 0;
+    width: 100%;
+    padding-right: 15px;
+    padding-bottom: 0;
+    height: auto;
+  }
+
+  .images-mobile {
+    display: block;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .info__title {
+    margin-top: 16px;
+    font-size: 18px;
+    line-height: 150%;
+    font-weight: 600;
+  }
+
+  .price {
+    margin-top: 4px;
+  }
+
+  .color {
+    margin-top: 16px;
+    font-size: 14px;
+  }
+
+  .info-btns {
+    margin-top: 32px;
+  }
+
+  .div {
+    display: none;
+  }
+
+  .info-links {
+    margin-top: 24px;
+  }
+
+  .div-mobile {
+    display: block;
+    height: 1px;
+    background: rgba(#000, 0.1);
+    margin: 40px 8px;
+  }
+
+  .upsale {
+    margin-top: 0;
+  }
+
+  .mobile-slider {
+    img {
+      width: 100%;
+      display: block;
+    }
+  }
+}
+
+.swiper-pagination-bullet {
+  width: 6px !important;
+  height: 6px !important;
+}
+
+.swiper-pagination-bullet.swiper-pagination-bullet-active {
+  background: #000;
+}
+
+.swiper-pagination-bullet-active {
+  background: green;
 }
 </style>

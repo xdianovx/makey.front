@@ -47,3 +47,10 @@ input {
   display: inline-block;
   border: none;
 }
+
+.mobile-slider .swiper-pagination-bullet {
+  width: 6px !important;
+  height: 6px !important;
+  background: rgba(#000, 0.2);
+  margin: 0 2px !important;
+}
