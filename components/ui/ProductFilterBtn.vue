@@ -29,4 +29,10 @@
   gap: 4px;
   line-height: 100%;
 }
+
+@media screen and (max-width: 768px) {
+  .filter {
+    display: none;
+  }
+}
 </style>

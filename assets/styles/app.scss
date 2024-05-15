@@ -32,5 +32,23 @@ main {
   }
 }
 
+.banner-swiper {
+
+  .swiper-pagination {
+    .swiper-pagination-bullet {
+      background: rgba(255, 255, 255, 0.50);
+      transition: width $trans ease-in-out;
+    }
+
+    .swiper-pagination-bullet-active {
+      width: 20px;
+      -webkit-border-radius: 6px;
+      -moz-border-radius: 6px;
+      border-radius: 6px;
+    }
+  }
+}
+
+
 @media screen and (max-width: 1280px) {
 }

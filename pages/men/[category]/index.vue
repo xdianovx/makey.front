@@ -7,10 +7,11 @@
           <nav class="hero-categories">
             <NuxtLink
               class="hero-filters-link"
+              :to="item.slug"
               :key="item.id"
               v-for="item in links"
-              >{{ item.title }}</NuxtLink
-            >
+              >{{ item.title }}
+            </NuxtLink>
           </nav>
           <div class="hero-btns">
             <UiProductsSortDropdown />
@@ -35,12 +36,12 @@
 
 <script setup>
 const links = [
-  { id: 1, slug: "/sumki/asd", title: "Смотреть всё" },
-  { id: 2, slug: "/sumki/asd", title: "Большие сумки" },
-  { id: 3, slug: "/sumki/asd", title: "Средние сумки" },
-  { id: 4, slug: "/sumki/asd", title: "Мини-сумки" },
-  { id: 5, slug: "/sumki/asd", title: "Футляры" },
-  { id: 6, slug: "/sumki/asd", title: "Клатчи" },
+  { id: 1, slug: "/men/sumki/", title: "Смотреть всё" },
+  { id: 2, slug: "/men/sumki/asd", title: "Большие сумки" },
+  { id: 3, slug: "/men/sumki/asd", title: "Средние сумки" },
+  { id: 4, slug: "/men/sumki/asd", title: "Мини-сумки" },
+  { id: 5, slug: "/men/sumki/asd", title: "Футляры" },
+  { id: 6, slug: "/men/sumki/asd", title: "Клатчи" },
 ];
 </script>
 
@@ -66,6 +67,7 @@ const links = [
   cursor: pointer;
   font-size: 16px;
   position: relative;
+
   &::before {
     content: "";
     position: absolute;

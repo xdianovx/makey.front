@@ -3,6 +3,7 @@ import Spacer from "~/components/Spacer.vue";
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 gsap.registerPlugin(ScrollTrigger);
 
 const main = ref();
@@ -52,11 +53,11 @@ const categories = [
             <NuxtLink class="cat-link" to="/men">Смотреть все</NuxtLink>
             <NuxtLink
               class="cat-link"
-              :to="cat.slug"
+              :to="`/men/${cat.slug}`"
               v-for="cat in categories"
               :key="cat.id"
-              >{{ cat.title }}</NuxtLink
-            >
+              >{{ cat.title }}
+            </NuxtLink>
           </nav>
 
           <div class="top-nav-filters">
@@ -71,7 +72,7 @@ const categories = [
     </section>
 
     <section class="banners-section">
-      <div class="containeasr">
+      <div class="containesr">
         <div class="banners-section__wrap">
           <NuxtLink href="/" class="banner-item">
             <img src="/img/banner-1.jpg" />
@@ -214,6 +215,7 @@ const categories = [
   -ms-overflow-style: none; /* for Internet Explorer, Edge */
   scrollbar-width: none; /* for Firefox */
   overflow-y: scroll;
+
   &::-webkit-scrollbar {
     display: none; /* for Chrome, Safari, and Opera */
   }
@@ -306,6 +308,7 @@ const categories = [
     position: relative;
   }
 }
+
 @media screen and (max-width: 1280px) {
   .banner-item {
     position: relative;

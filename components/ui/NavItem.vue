@@ -49,7 +49,7 @@ onMounted(() => {
           opacity: 0,
           stagger: 0.02,
         },
-        "<"
+        "<",
       );
   }, header.value);
 });
@@ -84,7 +84,9 @@ onUnmounted(() => {
           </nav>
 
           <div class="megamenu__collections_wrap">
-            <h4 class="link-collection-anim">Коллекции</h4>
+            <NuxtLink to="/collections" class="link-collection-anim"
+              >Коллекции</NuxtLink
+            >
             <nav class="megamenu__collections">
               <NuxtLink
                 class="link-collection link-collection-anim"
