@@ -31,6 +31,7 @@
     </section>
 
     <SectionsCatalogSeo />
+    <Spacer />
   </main>
 </template>
 
