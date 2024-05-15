@@ -1,5 +1,5 @@
 <template>
-  <button class="user-btn" :class="{ black: !isHome }">
+  <NuxtLink to="/profile" class="user-btn" :class="{ black: !isHome }">
     <svg
       width="24"
       height="24"
@@ -24,7 +24,7 @@
         />
       </g>
     </svg>
-  </button>
+  </NuxtLink>
 </template>
 
 <script setup>

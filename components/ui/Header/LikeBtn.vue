@@ -1,5 +1,5 @@
 <template>
-  <button>
+  <NuxtLink to="/favorites">
     <svg
       width="24"
       height="24"
@@ -24,7 +24,7 @@
         />
       </g>
     </svg>
-  </button>
+  </NuxtLink>
 </template>
 
 <script setup>

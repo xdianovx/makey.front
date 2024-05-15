@@ -38,7 +38,7 @@ onUnmounted(() => {
 
                 <NuxtLink to="/" class="section__link">Подробнее</NuxtLink>
                 <div class="mobile__links">
-                  <NuxtLink to="/woman" class="mobile__link">Women</NuxtLink>
+                  <NuxtLink to="/women" class="mobile__link">Women</NuxtLink>
                   <NuxtLink to="/men" class="mobile__link">Men</NuxtLink>
                 </div>
               </div>

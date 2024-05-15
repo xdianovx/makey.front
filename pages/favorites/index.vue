@@ -1,0 +1,118 @@
+<template>
+  <main>
+    <section class="top">
+      <div class="container">
+        <div class="top-wrap">
+          <h1>Избранное</h1>
+          <button class="share-btn">
+            <svg
+              width="12"
+              height="16"
+              viewBox="0 0 12 16"
+              fill="black"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1.99984 15.3336C1.63317 15.3336 1.31928 15.203 1.05817 14.9419C0.797059 14.6808 0.666504 14.3669 0.666504 14.0003V6.66693C0.666504 6.30026 0.797059 5.98637 1.05817 5.72526C1.31928 5.46415 1.63317 5.33359 1.99984 5.33359H3.33317C3.52206 5.33359 3.68039 5.39748 3.80817 5.52526C3.93595 5.65304 3.99984 5.81137 3.99984 6.00026C3.99984 6.18915 3.93595 6.34748 3.80817 6.47526C3.68039 6.60304 3.52206 6.66693 3.33317 6.66693H1.99984V14.0003H9.99984V6.66693H8.6665C8.47761 6.66693 8.31928 6.60304 8.1915 6.47526C8.06373 6.34748 7.99984 6.18915 7.99984 6.00026C7.99984 5.81137 8.06373 5.65304 8.1915 5.52526C8.31928 5.39748 8.47761 5.33359 8.6665 5.33359H9.99984C10.3665 5.33359 10.6804 5.46415 10.9415 5.72526C11.2026 5.98637 11.3332 6.30026 11.3332 6.66693V14.0003C11.3332 14.3669 11.2026 14.6808 10.9415 14.9419C10.6804 15.203 10.3665 15.3336 9.99984 15.3336H1.99984ZM5.33317 3.21693L4.73317 3.81693C4.59984 3.95026 4.44428 4.01415 4.2665 4.00859C4.08873 4.00304 3.93317 3.93359 3.79984 3.80026C3.67762 3.66693 3.61373 3.51137 3.60817 3.33359C3.60261 3.15582 3.6665 3.00026 3.79984 2.86693L5.53317 1.13359C5.6665 1.00026 5.82206 0.933594 5.99984 0.933594C6.17761 0.933594 6.33317 1.00026 6.4665 1.13359L8.19984 2.86693C8.32206 2.98915 8.38317 3.14193 8.38317 3.32526C8.38317 3.50859 8.32206 3.66693 8.19984 3.80026C8.0665 3.93359 7.90817 4.00026 7.72484 4.00026C7.5415 4.00026 7.38317 3.93359 7.24984 3.80026L6.6665 3.21693V10.0003C6.6665 10.1891 6.60262 10.3475 6.47484 10.4753C6.34706 10.603 6.18873 10.6669 5.99984 10.6669C5.81095 10.6669 5.65261 10.603 5.52484 10.4753C5.39706 10.3475 5.33317 10.1891 5.33317 10.0003V3.21693Z"
+              />
+            </svg>
+            <span>Поделиться избранным</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="products">
+      <div class="container">
+        <div class="products-wrap">
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+        </div>
+      </div>
+    </section>
+
+    <Spacer />
+  </main>
+</template>
+
+<script lang="ts" setup></script>
+
+<style scoped lang="scss">
+.top {
+  margin-top: 100px;
+}
+
+.top-wrap {
+  display: flex;
+  justify-content: space-between;
+}
+
+.share-btn {
+  font-size: 14px;
+  line-height: 17px;
+  padding: 12px 16px;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #000;
+  font-weight: 500;
+  svg {
+    display: block;
+    margin-bottom: 2px;
+  }
+}
+
+.products {
+}
+
+.products-wrap {
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 48px 16px;
+}
+
+@media screen and (max-width: 1200px) {
+  .products-wrap {
+    margin-top: 32px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px 16px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .products-wrap {
+    margin-top: 32px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 48px 16px;
+  }
+
+  .share-btn {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+
+    transform: translateX(-50%);
+    z-index: 20;
+    background: #000;
+    color: #fff;
+    font-size: 16px;
+    line-height: 20px;
+    width: 100%;
+    max-width: 260px;
+    justify-content: center;
+    svg {
+      fill: white;
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+</style>
