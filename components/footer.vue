@@ -28,7 +28,7 @@ const links = [
     title: "Сервис и поддержка",
     links: [
       { id: 1, title: "Контакты", link: "/contacts" },
-      { id: 2, title: "О компании", link: "/" },
+      { id: 2, title: "О компании", link: "/o-kompanii" },
       { id: 3, title: "Магазины", link: "/stores" },
       { id: 4, title: "Франшиза", link: "/" },
     ],
@@ -37,7 +37,7 @@ const links = [
     id: 4,
     title: "Компания",
     links: [
-      { id: 1, title: "Корпоративные заказы", link: "/" },
+      { id: 1, title: "Корпоративные заказы", link: "/korporativnye-zakazy" },
       { id: 2, title: "Оплата и доставка", link: "/dostavka-i-oplata" },
       { id: 3, title: "Гарантия и возврат", link: "/garantia-i-vozvrat" },
       { id: 4, title: "Помощь и FAQ", link: "/faq" },

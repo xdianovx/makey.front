@@ -32,9 +32,13 @@ main {
   }
 }
 
-.banner-swiper {
+.banner-swiper, .corp-swiper {
 
   .swiper-pagination {
+    width: auto !important;
+    right: 48px;
+    left: auto !important;
+
     .swiper-pagination-bullet {
       background: rgba(255, 255, 255, 0.50);
       transition: width $trans ease-in-out;
