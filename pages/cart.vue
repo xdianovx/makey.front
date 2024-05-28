@@ -20,7 +20,9 @@
           <div class="checkout-aside">
             <CheckoutCart />
 
-            <NuxtLink class="checkout-btn">Перейти к оформлению</NuxtLink>
+            <NuxtLink class="checkout-btn" to="/checkout"
+              >Перейти к оформлению</NuxtLink
+            >
           </div>
         </div>
       </div>
