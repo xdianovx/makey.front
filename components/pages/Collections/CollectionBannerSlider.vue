@@ -18,13 +18,13 @@ const props = defineProps(["data"]);
           <div class="info">
             <div class="container">
               <h2 class="banner-title">{{ data.title }}</h2>
-              <p class="banner-text">
+              <!-- <p class="banner-text">
                 3 модели разных сумок, которые объединяет только одно – стиль.
                 Каждая модель передает главную идею – эволюцию стиля и
                 индивидуальности. Это объединение новейших тенденций в моде с
                 классическими элементами, символизируя развитие и трансформацию
                 стиля.
-              </p>
+              </p> -->
 
               <NuxtLink :to="`/collections/teddy`" class="banner-btn">
                 Смотреть всю коллекцию
