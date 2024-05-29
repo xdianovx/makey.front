@@ -12,29 +12,41 @@ onMounted(() => {
   ctx = gsap.context((self) => {
     const sections = self.selector(".section");
   }, section.value);
-
-  console.log(window);
 });
 
 onUnmounted(() => {
   ctx.revert();
 });
+
+const data = [
+  {
+    id: 1,
+    title: "EVOLUTION",
+    image: "/video/1.mp4",
+  },
+  {
+    id: 2,
+    title: "Le Lin ",
+    suptitle: "NEW SEASON",
+    image: "/video/2.mp4",
+  },
+];
 </script>
 
 <template>
   <div ref="section">
     <ClientOnly>
-      <section class="section" v-for="item in 4">
+      <section class="section" v-for="item in data" :key="item.id">
         <div class="container">
           <div class="screen">
             <div class="overlay"></div>
             <video playsinline autoplay loop muted class="section__video">
-              <source src="/video/home.mp4" type="video/mp4" />
+              <source :src="item.image" type="video/mp4" />
             </video>
             <div class="section__wrap">
               <div class="section__info">
-                <h2 class="section__title">Evolution</h2>
-                <p class="section__subtitle">collection</p>
+                <h2 class="section__title">{{ item.title }}</h2>
+                <p class="section__subtitle">{{ item.suptitle }}</p>
 
                 <NuxtLink to="/" class="section__link">Подробнее</NuxtLink>
                 <div class="mobile__links">
