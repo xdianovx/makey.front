@@ -1,21 +1,23 @@
 <script setup lang="ts">
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Pagination } from "swiper/modules";
+
+const props = defineProps(["data"]);
 </script>
 
 <template>
   <section>
     <swiper :pagination="true" :modules="[Pagination]" class="banner-swiper">
-      <swiper-slide v-for="item in 4">
+      <swiper-slide v-for="item in data.slider">
         <div class="banner">
           <div class="image">
             <div class="overflow"></div>
-            <img src="@/assets/img/coll-1.jpg" alt="Evolution collection" />
+            <img :src="item.image" alt="Evolution collection" />
           </div>
 
           <div class="info">
             <div class="container">
-              <h2 class="banner-title">Evolution collection</h2>
+              <h2 class="banner-title">{{ data.title }}</h2>
               <p class="banner-text">
                 3 модели разных сумок, которые объединяет только одно – стиль.
                 Каждая модель передает главную идею – эволюцию стиля и
@@ -43,11 +45,12 @@ import { Pagination } from "swiper/modules";
 .image {
   width: 100%;
   position: relative;
+  aspect-ratio: 16 /9;
 
   img {
     object-fit: cover;
     width: 100%;
-    height: auto;
+    height: 100%;
     display: block;
   }
 }

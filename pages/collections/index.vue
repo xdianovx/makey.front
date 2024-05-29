@@ -4,23 +4,200 @@ import CollectionBannerSlider from "~/components/pages/Collections/CollectionBan
 import SimilarProducts from "~/components/sections/SimilarProducts.vue";
 
 const collections = [
-  { id: 1, title: "Le Lin", slug: "le-lin" },
-  { id: 2, title: "Heart Shopper", slug: "heart-shopper" },
-  { id: 3, title: "Evolution", slug: "evolution" },
-  { id: 4, title: "Trio", slug: "trio" },
-  { id: 5, title: "Teddy", slug: "teddy" },
-  { id: 6, title: "Turtle", slug: "turtle" },
-  { id: 7, title: "Tie", slug: "tie" },
-  { id: 8, title: "Bubbles", slug: "bubbles" },
-  { id: 9, title: "Texture", slug: "texture" },
-  { id: 10, title: "Fleur", slug: "fleur" },
-  { id: 11, title: "Classic", slug: "classic" },
-  { id: 12, title: "Waves", slug: "waves" },
-  { id: 13, title: "Key", slug: "key" },
-  { id: 14, title: "Royal", slug: "royal" },
-  { id: 15, title: "Geometry", slug: "geometry" },
-  { id: 16, title: "Venice", slug: "venice" },
-  { id: 17, title: "City", slug: "city" },
+  {
+    id: 1,
+    title: "LE LIN NEW SEASON",
+    slug: "le-lin",
+    text: "Le Lin — это сочетание натуральной кожи и экологичного льна, придающее каждому изделию уникальный стиль и текстуру. Эта коллекция, вдохновленная стремлением к эстетике и функциональности, делает акцент на качестве и ответственном подходе к выбору материалов.",
+    slider: [
+      {
+        id: 1,
+        slug: "",
+        image: "/img/collections/lelin/1.jpg",
+      },
+      {
+        id: 2,
+        slug: "",
+        image: "/img/collections/lelin/2.jpg",
+      },
+      {
+        id: 3,
+        slug: "",
+        image: "/img/collections/lelin/3.jpg",
+      },
+      {
+        id: 4,
+        slug: "",
+        image: "/img/collections/lelin/4.jpg",
+      },
+      {
+        id: 5,
+        slug: "",
+        image: "/img/collections/lelin/5.jpg",
+      },
+      {
+        id: 6,
+        slug: "",
+        image: "/img/collections/lelin/6.jpg",
+      },
+      {
+        id: 7,
+        slug: "",
+        image: "/img/collections/lelin/7.jpg",
+      },
+      {
+        id: 8,
+        slug: "",
+        image: "/img/collections/lelin/8.jpg",
+      },
+    ],
+  },
+  {
+    id: 2,
+    title: "EVOLUTION COLLECTION",
+    slug: "le-lin",
+    text: "EVOLUTION — коллекция, отражающая атмосферу города. Благодаря строгому и минималистичному дизайну, она открывает простор для творчества, позволяя создавать бесконечное множество вариантов стилизации. В коллекции представлены 3 модели: SMALL, MEDIUM и LARGE, что даёт возможность каждому клиенту выбрать сумку, соответствующую его стилю жизни.",
+    slider: [
+      {
+        id: 1,
+        slug: "",
+        image: "/img/collections/evolution/1.jpg",
+      },
+      {
+        id: 2,
+        slug: "",
+        image: "/img/collections/evolution/2.jpg",
+      },
+      {
+        id: 3,
+        slug: "",
+        image: "/img/collections/evolution/3.jpg",
+      },
+      {
+        id: 4,
+        slug: "",
+        image: "/img/collections/evolution/4.jpg",
+      },
+      {
+        id: 5,
+        slug: "",
+        image: "/img/collections/evolution/5.jpg",
+      },
+      {
+        id: 6,
+        slug: "",
+        image: "/img/collections/evolution/6.jpg",
+      },
+      {
+        id: 7,
+        slug: "",
+        image: "/img/collections/evolution/7.jpg",
+      },
+    ],
+  },
+  {
+    id: 3,
+    title: "CARGO BAG",
+    slug: "heart-shopper",
+    slider: [
+      {
+        id: 1,
+        slug: "",
+        image: "/img/collections/cargo/1.jpg",
+      },
+      {
+        id: 2,
+        slug: "",
+        image: "/img/collections/cargo/2.jpg",
+      },
+      {
+        id: 3,
+        slug: "",
+        image: "/img/collections/cargo/3.jpg",
+      },
+      {
+        id: 4,
+        slug: "",
+        image: "/img/collections/cargo/4.jpg",
+      },
+      {
+        id: 5,
+        slug: "",
+        image: "/img/collections/cargo/5.jpg",
+      },
+      {
+        id: 6,
+        slug: "",
+        image: "/img/collections/cargo/6.jpg",
+      },
+      {
+        id: 7,
+        slug: "",
+        image: "/img/collections/cargo/7.jpg",
+      },
+      {
+        id: 8,
+        slug: "",
+        image: "/img/collections/cargo/8.jpg",
+      },
+    ],
+  },
+  {
+    id: 3,
+    title: "HEART SHOPPER",
+    slug: "evolution",
+    slider: [
+      {
+        id: 1,
+        slug: "",
+        image: "/img/collections/heart/1.jpg",
+      },
+      {
+        id: 2,
+        slug: "",
+        image: "/img/collections/heart/2.jpg",
+      },
+      {
+        id: 3,
+        slug: "",
+        image: "/img/collections/heart/3.jpg",
+      },
+      {
+        id: 4,
+        slug: "",
+        image: "/img/collections/heart/4.jpg",
+      },
+      {
+        id: 5,
+        slug: "",
+        image: "/img/collections/heart/5.jpg",
+      },
+      {
+        id: 6,
+        slug: "",
+        image: "/img/collections/heart/6.jpg",
+      },
+      {
+        id: 7,
+        slug: "",
+        image: "/img/collections/heart/7.jpg",
+      },
+    ],
+  },
+  // { id: 4, title: "Trio", slug: "trio" },
+  // { id: 5, title: "Teddy", slug: "teddy" },
+  // { id: 6, title: "Turtle", slug: "turtle" },
+  // { id: 7, title: "Tie", slug: "tie" },
+  // { id: 8, title: "Bubbles", slug: "bubbles" },
+  // { id: 9, title: "Texture", slug: "texture" },
+  // { id: 10, title: "Fleur", slug: "fleur" },
+  // { id: 11, title: "Classic", slug: "classic" },
+  // { id: 12, title: "Waves", slug: "waves" },
+  // { id: 13, title: "Key", slug: "key" },
+  // { id: 14, title: "Royal", slug: "royal" },
+  // { id: 15, title: "Geometry", slug: "geometry" },
+  // { id: 16, title: "Venice", slug: "venice" },
+  // { id: 17, title: "City", slug: "city" },
 ];
 </script>
 
@@ -48,8 +225,8 @@ const collections = [
       </div>
     </section>
 
-    <section class="collection-item" v-for="item in 4">
-      <CollectionBannerSlider />
+    <section class="collection-item" v-for="item in collections">
+      <CollectionBannerSlider :data="item" :key="item.id" />
       <SimilarProducts class="collection-item-products" />
     </section>
 
