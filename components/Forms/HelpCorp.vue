@@ -39,9 +39,12 @@ const data = defineProps(["title"]);
 
       <div class="contacts">
         <NuxtLink to="tel:+375 (29) 580-13-78"> +375 (29) 580-13-78</NuxtLink>
-        <NuxtLink to="tel:+375 (29) 580-13-78"> +375 (29) 580-13-78</NuxtLink>
+        <NuxtLink to="tel:8 (0152) 44-20-20"> 8 (0152) 44-20-20</NuxtLink>
+        <NuxtLink to="tel:+375 (29) 388-03-26"> +375 (29) 388-03-26</NuxtLink>
+        <NuxtLink to="tel:+375 (29) 700-22-17 "> +375 (29) 700-22-17 </NuxtLink>
 
         <NuxtLink to="mailto:tmanager@makey.by"> tmanager@makey.by</NuxtLink>
+        <NuxtLink to="mailto:art@makey.by">art@makey.by</NuxtLink>
         <NuxtLink to="mailto:dovnar7@mail.ru">dovnar7@mail.ru</NuxtLink>
       </div>
     </div>

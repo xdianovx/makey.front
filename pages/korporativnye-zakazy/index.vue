@@ -41,7 +41,9 @@ const data = [
 
     <section class="top">
       <div class="container">
-        <FormsHelp />
+        <FormsHelpCorp
+          title="Хотите сделать корпоративный заказ? Заполните форму и наш менеджер свяжется с Вами"
+        />
       </div>
     </section>
     <Spacer />
