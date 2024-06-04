@@ -1,46 +1,10 @@
 <script setup>
-import Spacer from "~/components/Spacer.vue";
-
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
-
-const main = ref();
-let ctx;
-
-// onMounted(() => {
-//   ctx = gsap.context((self) => {
-//     const nav = self.selector(".top");
-//     gsap.to(nav, {
-//       y: 0,
-//       scrollTrigger: {
-//         trigger: nav,
-//         start: "top top",
-//         end: "top 50%",
-//         scrub: 1,
-//         pinSpacing: true,
-//         pin: nav,
-//         markers: true,
-//       },
-//     });
-//   }, main.value); // <- Scope!
-// });
-
-// onUnmounted(() => {
-//   ctx.revert(); // <- Easy Cleanup!
-// });
-
-const categories = [
-  { id: 1, title: "Сумки", slug: "sumki" },
-  { id: 2, title: "Рюкзаки", slug: "rukzaki" },
-  { id: 3, title: "Кошельки", slug: "koshelki" },
-  { id: 4, title: "Ремни", slug: "remni" },
-  { id: 5, title: "Косметички", slug: "kosmetichki" },
-  { id: 6, title: "Аксессуары", slug: "aksessuri" },
-  { id: 7, title: "Духи", slug: "dukhi" },
-  { id: 8, title: "Для дома", slug: "dliadoma" },
-];
+const { all: getProduct } = useGetProductsStore();
+const { all: getCategories } = useCategoriesStore();
+const { products } = storeToRefs(useGetProductsStore());
+const { categories } = storeToRefs(useCategoriesStore());
+getProduct();
+getCategories();
 </script>
 
 <template>
@@ -150,26 +114,14 @@ const categories = [
     </section>
 
     <section class="category">
-      <SectionsCategorySlider :count="12" title="Сумки" slug="/men/sumki" />
-      <SectionsCategorySlider :count="4" title="Рюкзаки" slug="/men/rukzaki" />
       <SectionsCategorySlider
-        :count="6"
-        title="Кошельки"
-        slug="/men/koshelki"
+        :count="categories.length"
+        :title="cat.title"
+        :slug="cat.slug"
+        :cat_id="cat.id"
+        v-for="cat in categories"
+        :key="cat.id"
       />
-      <SectionsCategorySlider :count="3" title="Ремни" slug="/men/remni" />
-      <SectionsCategorySlider
-        :count="7"
-        title="Косметички"
-        slug="/men/kosmetichki"
-      />
-      <SectionsCategorySlider
-        :count="6"
-        title="Аксессуары"
-        slug="/men/arsessuari"
-      />
-      <SectionsCategorySlider :count="4" title="Духи" slug="/men/duhi" />
-      <SectionsCategorySlider :count="2" title="Для дома" slug="/men/dom" />
     </section>
 
     <button class="mobile-filter-btn">

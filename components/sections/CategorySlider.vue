@@ -1,4 +1,6 @@
 <script setup>
+import Card from "../product/Card.vue";
+
 import { Navigation } from "swiper/modules";
 
 const prev = ref(null);
@@ -8,11 +10,21 @@ const props = defineProps({
   title: String,
   count: Number,
   slug: String,
+  cat_id: Number,
+});
+
+const productStore = useGetProductsStore();
+
+const { data } = await useFetch("http://45.135.234.37/api/v1/man/products", {
+  method: "get",
+  query: {
+    "categories[]": [props.cat_id],
+  },
 });
 </script>
 
 <template>
-  <section class="section">
+  <section class="section" v-if="data.length > 0">
     <div class="container">
       <div class="section-top">
         <h2 class="h2">{{ title }}</h2>
@@ -43,8 +55,8 @@ const props = defineProps({
             nextEl: next,
           }"
         >
-          <SwiperSlide v-for="item in count">
-            <ProductCard />
+          <SwiperSlide v-for="product in data" :key="product.id">
+            <ProductCard1 :data="product" />
           </SwiperSlide>
         </Swiper>
       </div>

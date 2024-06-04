@@ -86,8 +86,12 @@ const data = defineProps(["title"]);
   textarea {
     border: 1px solid rgba(#000000, 0.1);
     border-radius: 8px;
+    margin-top: 4px;
     resize: none;
     height: 120px;
+  }
+  label {
+    font-size: 14px;
   }
 }
 
@@ -106,5 +110,64 @@ const data = defineProps(["title"]);
   border-radius: 12px;
   padding: 15px;
   display: block;
+}
+
+@media screen and (max-width: 1440px) {
+  .right {
+    max-width: 438px;
+    width: 100%;
+    flex-shrink: 0;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .left {
+    max-width: 70%;
+  }
+  .right {
+    max-width: 30%;
+
+    flex-shrink: 1;
+  }
+
+  .div {
+    margin: 0 54px;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .form {
+    margin-top: 24px;
+  }
+
+  .title {
+    font-size: 16px;
+  }
+
+  .top-wrap {
+    flex-direction: column;
+  }
+  .left {
+    max-width: none;
+  }
+  .right {
+    max-width: none;
+
+    flex-shrink: 0;
+  }
+
+  .div {
+    margin: 40px auto;
+    height: 1px;
+    width: calc(100% - 16px);
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
 }
 </style>

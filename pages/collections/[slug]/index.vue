@@ -1,10 +1,14 @@
-<script setup lang="ts">
+<script setup>
 import ProductsSortDropdown from "~/components/ui/ProductsSortDropdown.vue";
 import CollectionBannerSlider from "~/components/pages/Collections/CollectionBannerSlider.vue";
 import SimilarProducts from "~/components/sections/SimilarProducts.vue";
 
+// const { data } = await useFetch("");
+
 const { all: getProduct } = useGetProductsStore();
 const { products } = storeToRefs(useGetProductsStore());
+
+await getProduct();
 
 const collections = [
   {
@@ -202,6 +206,12 @@ const collections = [
   // { id: 16, title: "Venice", slug: "venice" },
   // { id: 17, title: "City", slug: "city" },
 ];
+
+const categories = [
+  { id: 1, title: "Сумки" },
+  { id: 2, title: "Рюкзаки" },
+  { id: 3, title: "Ремни" },
+];
 </script>
 
 <template>
@@ -211,10 +221,8 @@ const collections = [
         <h1 class="title">Коллекции</h1>
         <div class="top-wrap">
           <div class="collections-wrap">
-            <NuxtLink
-              v-for="item in collections"
-              :to="`/collections/${item.slug}`"
-              :key="item.id"
+            <NuxtLink>Смотреть всё</NuxtLink>
+            <NuxtLink v-for="item in categories" :key="item.id"
               >{{ item.title }}
             </NuxtLink>
           </div>
@@ -228,9 +236,17 @@ const collections = [
       </div>
     </section>
 
-    <section class="collection-item" v-for="item in collections">
-      <CollectionBannerSlider :data="item" :key="item.id" />
-      <SimilarProducts class="collection-item-products" />
+    <section class="collection-item">
+      <CollectionBannerSlider :data="collections[0]" :button="false" />
+      <!-- <SimilarProducts class="collection-item-products" /> -->
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="products">
+          <ProductCard1 v-for="item in products" :key="item.id" :data="item" />
+        </div>
+      </div>
     </section>
 
     <SectionsCatalogSeo />
@@ -257,6 +273,12 @@ const collections = [
 <style scoped lang="scss">
 .top {
   margin-top: 100px;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 48px 16px;
 }
 
 .title {
@@ -291,6 +313,7 @@ const collections = [
   display: flex;
   flex-wrap: wrap;
   gap: 8px 28px;
+
   margin-top: 8px;
 }
 
@@ -312,6 +335,9 @@ const collections = [
 }
 
 @media screen and (max-width: 1200px) {
+  .top {
+    margin-top: 80px;
+  }
   .top-wrap {
     flex-direction: column;
     gap: 8px;
@@ -327,15 +353,48 @@ const collections = [
   }
 
   .collections-wrap {
-    //overflow-x: scroll;
-    //white-space: nowrap;
-    //-ms-overflow-style: none;
-    //flex-wrap: nowrap;
-    //scrollbar-width: none;
+    overflow-x: scroll;
+    white-space: nowrap;
+    -ms-overflow-style: none;
+    flex-wrap: nowrap;
+    scrollbar-width: none;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .products {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .collections-wrap {
+    position: relative;
+    display: flex;
+    width: 100%;
+    margin-top: 0;
+    gap: 18px;
+    overflow-x: scroll;
+    white-space: nowrap;
+    scrollbar-width: none;
+    overflow-y: scroll;
+  }
+
+  .top-filters {
+    display: none;
+  }
+
+  .collection-item {
+    margin-top: 10px;
   }
 }
 
 @media screen and (max-width: 768px) {
+  .title {
+    font-size: 20px;
+  }
+  .products {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 48px 8px;
+  }
   .top-filters {
     margin-top: 24px;
   }

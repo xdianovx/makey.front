@@ -32,15 +32,15 @@ main {
   }
 }
 
-.banner-swiper, .corp-swiper {
-
+.banner-swiper,
+.corp-swiper {
   .swiper-pagination {
     width: auto !important;
     right: 48px;
     left: auto !important;
 
     .swiper-pagination-bullet {
-      background: rgba(255, 255, 255, 0.50);
+      background: rgba(255, 255, 255, 0.5);
       transition: width $trans ease-in-out;
     }
 
@@ -53,6 +53,17 @@ main {
   }
 }
 
-
 @media screen and (max-width: 1280px) {
+}
+
+@media screen and (max-width: 1024px) {
+  .banner-swiper,
+  .corp-swiper {
+    .swiper-pagination {
+      width: auto !important;
+      right: 0 !important;
+      margin: 0 auto;
+      left: 0 !important;
+    }
+  }
 }

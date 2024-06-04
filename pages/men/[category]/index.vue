@@ -1,3 +1,19 @@
+<script setup>
+const links = [
+  { id: 1, slug: "/men/sumki/", title: "Смотреть всё" },
+  { id: 2, slug: "/men/sumki/asd", title: "Большие сумки" },
+  { id: 3, slug: "/men/sumki/asd", title: "Средние сумки" },
+  { id: 4, slug: "/men/sumki/asd", title: "Мини-сумки" },
+  { id: 5, slug: "/men/sumki/asd", title: "Футляры" },
+  { id: 6, slug: "/men/sumki/asd", title: "Клатчи" },
+];
+
+const { all: getProduct } = useGetProductsStore();
+const { products } = storeToRefs(useGetProductsStore());
+
+getProduct();
+</script>
+
 <template>
   <main>
     <section class="hero">
@@ -25,7 +41,7 @@
     <section class="products-section">
       <div class="container">
         <div class="products">
-          <ProductCard v-for="item in 16" />
+          <ProductCard1 v-for="item in products" :key="item.id" :data="item" />
         </div>
       </div>
     </section>
@@ -34,17 +50,6 @@
     <Spacer />
   </main>
 </template>
-
-<script setup>
-const links = [
-  { id: 1, slug: "/men/sumki/", title: "Смотреть всё" },
-  { id: 2, slug: "/men/sumki/asd", title: "Большие сумки" },
-  { id: 3, slug: "/men/sumki/asd", title: "Средние сумки" },
-  { id: 4, slug: "/men/sumki/asd", title: "Мини-сумки" },
-  { id: 5, slug: "/men/sumki/asd", title: "Футляры" },
-  { id: 6, slug: "/men/sumki/asd", title: "Клатчи" },
-];
-</script>
 
 <style lang="scss" scoped>
 .hero {

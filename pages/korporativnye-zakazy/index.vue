@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import { Pagination } from "swiper/modules";
 import { Swiper } from "swiper/vue";
+import { useGetProductsStore } from "~/stores/getProducts";
 
-const data = [
-  { id: 1, title: "", text: "", image: "" },
-  { id: 2, title: "", text: "", image: "" },
-  { id: 3, title: "", text: "", image: "" },
-  { id: 4, title: "", text: "", image: "" },
-];
+// const data = [
+//   { id: 1, title: "", text: "", image: "" },
+//   { id: 2, title: "", text: "", image: "" },
+//   { id: 3, title: "", text: "", image: "" },
+//   { id: 4, title: "", text: "", image: "" },
+// ];
 </script>
 
 <template>
@@ -113,5 +114,32 @@ const data = [
   font-style: normal;
   font-weight: 400;
   line-height: 150%;
+}
+
+@media screen and (max-width: 1024px) {
+  .top {
+    margin-top: 54px;
+  }
+  .banner-title {
+    font-size: 20px;
+  }
+
+  .banner-text {
+    font-size: 14px;
+    margin-top: 8px;
+  }
+
+  .image {
+    height: 400px;
+    img {
+      display: block;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .info {
+    bottom: 48px;
+  }
 }
 </style>

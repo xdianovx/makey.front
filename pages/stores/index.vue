@@ -53,6 +53,13 @@ const cities = [
   margin-top: 32px;
   gap: 28px;
   display: flex;
+  display: flex;
+  gap: 28px;
+  overflow-x: scroll;
+  white-space: nowrap;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow-y: scroll;
 }
 
 .city-item {
@@ -73,8 +80,13 @@ const cities = [
 
   &.active {
     &:before {
+      content: "";
+      position: absolute;
+      bottom: 0;
       width: 100%;
       left: 0;
+      height: 1px;
+      background: $bgBLack;
       right: auto;
     }
   }
@@ -96,5 +108,11 @@ const cities = [
   display: flex;
   flex-direction: column;
   gap: 100px;
+}
+
+@media (max-width: 1024px) {
+  // .cards {
+  //   grid-template-columns: repeat(2, 1fr);
+  // }
 }
 </style>

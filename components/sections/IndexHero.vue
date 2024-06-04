@@ -173,4 +173,10 @@ const data = [
     border: 1px solid rgba($bgWhite, 0.3);
   }
 }
+
+@media screen and (max-width: 550px) {
+  .section__title {
+    font-size: 48px;
+  }
+}
 </style>

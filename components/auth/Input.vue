@@ -33,7 +33,7 @@ const emit = defineProps([
   gap: 8px;
 
   label {
-    font-size: 16px;
+    font-size: 14px;
     line-height: 150%;
   }
 

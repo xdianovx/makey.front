@@ -1,6 +1,11 @@
 <script setup>
 import { Navigation } from "swiper/modules";
 
+const { all: getProduct } = useGetProductsStore();
+const { products } = storeToRefs(useGetProductsStore());
+
+await getProduct();
+
 const props = defineProps({
   title: String,
 });
@@ -38,8 +43,8 @@ const next = ref(null);
             nextEl: next,
           }"
         >
-          <SwiperSlide v-for="item in 10">
-            <ProductCard />
+          <SwiperSlide v-for="item in products">
+            <ProductCard1 :data="item" />
           </SwiperSlide>
         </Swiper>
       </div>

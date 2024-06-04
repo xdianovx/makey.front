@@ -2,7 +2,7 @@
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Pagination } from "swiper/modules";
 
-const props = defineProps(["data"]);
+const props = defineProps(["data", "button"]);
 </script>
 
 <template>
@@ -26,7 +26,11 @@ const props = defineProps(["data"]);
                 стиля.
               </p> -->
 
-              <NuxtLink :to="`/collections/teddy`" class="banner-btn">
+              <NuxtLink
+                v-if="button !== false"
+                :to="`/collections/teddy`"
+                class="banner-btn"
+              >
                 Смотреть всю коллекцию
               </NuxtLink>
             </div>

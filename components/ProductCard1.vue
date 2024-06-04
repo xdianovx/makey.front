@@ -1,5 +1,9 @@
+<script setup>
+const props = defineProps(["data"]);
+</script>
+
 <template>
-  <NuxtLink to="/product" class="card">
+  <div class="card">
     <div class="new-tag">NEW</div>
 
     <button class="like-btn">
@@ -17,7 +21,12 @@
     </button>
 
     <div class="image">
-      <img src="/img/product/1.jpg" alt="Product title" />
+      <NuxtLink :to="`/product/${data.product_options[0].slug}`">
+        <img
+          :src="data.product_options[0].product_files[0]?.file"
+          alt="Product title"
+        />
+      </NuxtLink>
 
       <div class="colors">
         <div class="color-item black active"></div>
@@ -54,15 +63,11 @@
     </div>
 
     <div class="info">
-      <h3 class="title">Брелок для сумки</h3>
-      <div class="price">29 BYN</div>
+      <h3 class="title">{{ data.title }}</h3>
+      <div class="price">{{ data.product_options[0].price }} BYN</div>
     </div>
-  </NuxtLink>
+  </div>
 </template>
-
-<script setup>
-const props = defineProps(["data"]);
-</script>
 
 <style lang="scss" scoped>
 .card {

@@ -1,69 +1,32 @@
 <script setup>
-import Spacer from "~/components/Spacer.vue";
-
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger);
-
-const main = ref();
-let ctx;
-
-// onMounted(() => {
-//   ctx = gsap.context((self) => {
-//     const nav = self.selector(".top");
-//     gsap.to(nav, {
-//       y: 0,
-//       scrollTrigger: {
-//         trigger: nav,
-//         start: "top top",
-//         end: "top 50%",
-//         scrub: 1,
-//         pinSpacing: true,
-//         pin: nav,
-//         markers: true,
-//       },
-//     });
-//   }, main.value); // <- Scope!
-// });
-
-// onUnmounted(() => {
-//   ctx.revert(); // <- Easy Cleanup!
-// });
-
-const categories = [
-  { id: 1, title: "Сумки", slug: "sumki" },
-  { id: 2, title: "Рюкзаки", slug: "rukzaki" },
-  { id: 3, title: "Кошельки", slug: "koshelki" },
-  { id: 4, title: "Ремни", slug: "remni" },
-  { id: 5, title: "Косметички", slug: "kosmetichki" },
-  { id: 6, title: "Аксессуары", slug: "aksessuri" },
-  { id: 7, title: "Духи", slug: "dukhi" },
-  { id: 8, title: "Для дома", slug: "dliadoma" },
-];
+const { allWomen: getProduct } = useGetProductsStore();
+const { all: getCategories } = useCategoriesStore();
+const { products } = storeToRefs(useGetProductsStore());
+const { categories } = storeToRefs(useCategoriesStore());
+getProduct();
+getCategories();
 </script>
 
 <template>
   <main>
     <section class="top-section" ref="main">
       <div class="container">
-        <h1 class="title">Men</h1>
+        <h1 class="title">Women</h1>
         <div class="top">
           <nav class="top-nav">
-            <NuxtLink class="cat-link" to="/men">Смотреть все</NuxtLink>
+            <NuxtLink class="cat-link" to="/women">Смотреть все</NuxtLink>
             <NuxtLink
               class="cat-link"
-              :to="cat.slug"
+              :to="`/women/${cat.slug}`"
               v-for="cat in categories"
               :key="cat.id"
-              >{{ cat.title }}</NuxtLink
-            >
+              >{{ cat.title }}
+            </NuxtLink>
           </nav>
 
           <div class="top-nav-filters">
             <UiProductsSortDropdown />
-
             <div class="div"></div>
-
             <UiProductFilterBtn />
           </div>
         </div>
@@ -71,7 +34,7 @@ const categories = [
     </section>
 
     <section class="banners-section">
-      <div class="containeasr">
+      <div class="containesr">
         <div class="banners-section__wrap">
           <NuxtLink href="/" class="banner-item">
             <img src="/img/banner-1.jpg" />
@@ -149,26 +112,14 @@ const categories = [
     </section>
 
     <section class="category">
-      <SectionsCategorySlider :count="12" title="Сумки" slug="/men/sumki" />
-      <SectionsCategorySlider :count="4" title="Рюкзаки" slug="/men/rukzaki" />
       <SectionsCategorySlider
-        :count="6"
-        title="Кошельки"
-        slug="/men/koshelki"
+        :count="categories.length"
+        :title="cat.title"
+        :slug="cat.slug"
+        :cat_id="cat.id"
+        v-for="cat in categories"
+        :key="cat.id"
       />
-      <SectionsCategorySlider :count="3" title="Ремни" slug="/men/remni" />
-      <SectionsCategorySlider
-        :count="7"
-        title="Косметички"
-        slug="/men/kosmetichki"
-      />
-      <SectionsCategorySlider
-        :count="6"
-        title="Аксессуары"
-        slug="/men/arsessuari"
-      />
-      <SectionsCategorySlider :count="4" title="Духи" slug="/men/duhi" />
-      <SectionsCategorySlider :count="2" title="Для дома" slug="/men/dom" />
     </section>
 
     <button class="mobile-filter-btn">
@@ -214,6 +165,7 @@ const categories = [
   -ms-overflow-style: none; /* for Internet Explorer, Edge */
   scrollbar-width: none; /* for Firefox */
   overflow-y: scroll;
+
   &::-webkit-scrollbar {
     display: none; /* for Chrome, Safari, and Opera */
   }
@@ -306,6 +258,7 @@ const categories = [
     position: relative;
   }
 }
+
 @media screen and (max-width: 1280px) {
   .banner-item {
     position: relative;

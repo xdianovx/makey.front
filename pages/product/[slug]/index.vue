@@ -1,10 +1,16 @@
-<script lang="ts" setup>
-import type { Swiper, SwiperSlide } from "swiper/vue";
+<script setup>
+import { Swiper, SwiperSlide } from "swiper/vue";
 import ApplePayBtn from "~/components/ui/ApplePayBtn.vue";
 import { useProductInfoOpen } from "~/stores/productInfo";
 import { Pagination } from "swiper/modules";
+import { useMyProductPageStore } from "~/stores/productPage.js";
 
+const route = useRoute();
+const slug = route.params.slug;
+const { getData } = useMyProductPageStore();
+const { data } = storeToRefs(useMyProductPageStore());
 const infoStore = useProductInfoOpen();
+getData(slug);
 </script>
 
 <template>
@@ -12,28 +18,27 @@ const infoStore = useProductInfoOpen();
     <section class="section">
       <ProductInfo />
 
-      <ClientOnly>
-        <div class="images-mobile">
-          <Swiper
-            :slides-per-view="1"
-            class="mobile-slider"
-            :modules="[Pagination]"
-            :pagination="true"
-          >
-            <SwiperSlide v-for="(item, idx) in 6">
-              <img :src="`/img/product-page/${idx + 1}.jpg`" alt="" />
-            </SwiperSlide>
-          </Swiper>
-        </div>
-      </ClientOnly>
+      <div class="images-mobile">
+        <Swiper
+          :slides-per-view="1"
+          class="mobile-slider"
+          :modules="[Pagination]"
+          :pagination="true"
+        >
+          <SwiperSlide v-for="item in data.product_files">
+            <img :src="item.file" alt="" />
+          </SwiperSlide>
+        </Swiper>
+      </div>
 
       <div class="images">
         <a
-          :href="`/img/product-page/${idx + 1}.jpg`"
+          :href="item.file"
+          :key="item.id"
           data-fancybox="a"
-          v-for="(item, idx) in 6"
+          v-for="item in data.product_files"
         >
-          <img :src="`/img/product-page/${idx + 1}.jpg`" alt="" />
+          <img :src="item.file" alt="" />
         </a>
       </div>
 
@@ -42,10 +47,10 @@ const infoStore = useProductInfoOpen();
           <UiBreadcrumbs class="breadcrumbs" />
 
           <div class="info__title">
-            <h1 class="product-title">Сумка Evolution Large</h1>
+            <h1 class="product-title">{{ data?.title_product }}</h1>
           </div>
 
-          <div class="price">260 BYN</div>
+          <div class="price">{{ data?.price }} BYN</div>
 
           <div class="color">
             <p><b>Цвет:</b> черный</p>
@@ -126,7 +131,7 @@ const infoStore = useProductInfoOpen();
 
 <style scoped lang="scss">
 .section {
-  margin-top: 100px;
+  margin-top: 60px;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -303,6 +308,18 @@ const infoStore = useProductInfoOpen();
     display: block;
     overflow: hidden;
     width: 100%;
+    height: 500px;
+
+    .swiper {
+      height: 100%;
+    }
+
+    img {
+      height: 100%;
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
   }
 
   .info__title {

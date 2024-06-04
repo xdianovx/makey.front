@@ -1,3 +1,10 @@
+<script setup>
+const { all: getProduct } = useGetProductsStore();
+const { products } = storeToRefs(useGetProductsStore());
+
+await getProduct();
+</script>
+
 <template>
   <main>
     <section class="top">
@@ -25,12 +32,11 @@
     <section class="products">
       <div class="container">
         <div class="products-wrap">
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
+          <ProductCard1
+            v-for="product in products"
+            :data="product"
+            :key="product.id"
+          />
         </div>
       </div>
     </section>
@@ -38,8 +44,6 @@
     <Spacer />
   </main>
 </template>
-
-<script lang="ts" setup></script>
 
 <style scoped lang="scss">
 .top {
