@@ -1,6 +1,4 @@
 <script setup>
-import Card from "../product/Card.vue";
-
 import { Navigation } from "swiper/modules";
 
 const prev = ref(null);
@@ -11,24 +9,33 @@ const props = defineProps({
   count: Number,
   slug: String,
   cat_id: Number,
+  sex: String,
 });
 
-const productStore = useGetProductsStore();
-
-const { data } = await useFetch("http://45.135.234.37/api/v1/man/products", {
-  method: "get",
-  query: {
-    "categories[]": [props.cat_id],
-  },
-});
+const { data } = await useFetch(
+  `http://45.135.234.37/api/v1/${props.sex}/products`,
+  {
+    method: "get",
+    query: {
+      "categories[]": [props.cat_id],
+    },
+  }
+);
 </script>
 
 <template>
+  <!-- {{ data }} -->
   <section class="section" v-if="data.length > 0">
     <div class="container">
       <div class="section-top">
         <h2 class="h2">{{ title }}</h2>
-        <NuxtLink :to="`${slug}`" class="top-link">Смотреть все</NuxtLink>
+        <NuxtLink
+          :to="`${props.sex == 'man' ? 'men' : ''}${
+            props.sex == 'woman' ? 'women' : ''
+          }/${slug}`"
+          class="top-link"
+          >Смотреть все</NuxtLink
+        >
       </div>
 
       <div class="product-wrap">

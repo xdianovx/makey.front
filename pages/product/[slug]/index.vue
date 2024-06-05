@@ -11,12 +11,16 @@ const { getData } = useMyProductPageStore();
 const { data } = storeToRefs(useMyProductPageStore());
 const infoStore = useProductInfoOpen();
 getData(slug);
+
+const getFileExt = (item) => {
+  return item.file?.split(".").pop();
+};
 </script>
 
 <template>
   <main>
     <section class="section">
-      <ProductInfo />
+      <ProductInfo :data="data" />
 
       <div class="images-mobile">
         <Swiper
@@ -38,7 +42,11 @@ getData(slug);
           data-fancybox="a"
           v-for="item in data.product_files"
         >
-          <img :src="item.file" alt="" />
+          <img :src="item.file" alt="" v-if="getFileExt(item) == 'webp'" />
+
+          <video v-else playsinline autoplay loop muted>
+            <source :src="item.file" type="video/mp4" />
+          </video>
         </a>
       </div>
 

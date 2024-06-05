@@ -1,5 +1,6 @@
 <script setup>
 import { useProductInfoOpen } from "~/stores/productInfo";
+const props = defineProps(["data"]);
 
 let ctx;
 let tl;
@@ -83,6 +84,8 @@ onMounted(() => {
 onUnmounted(() => {
   ctx.revert();
 });
+
+console.log(props.data);
 </script>
 
 <template>
@@ -111,24 +114,7 @@ onUnmounted(() => {
         </button>
       </div>
 
-      <p class="aside__text">
-        Шикарная сумка EVOLUTION LARGE в классическом коричневом цвете от бренда
-        Makey - это идеальный выбор для стильных и деловых людей, которые ценят
-        качество и функциональность. Эта сумка сочетает в себе элегантный дизайн
-        и практичность, делая ее незаменимым аксессуаром для повседневного
-        использования. Изготовленная из натуральной кожи, сумка EVOLUTION LARGE
-        обладает высокой степенью надежности и долговечности. Благодаря своим
-        размерам и удобной конструкции, она поможет вам организовать все
-        необходимые вещи и документы так, чтобы они всегда были под рукой.
-        Особенности этой сумки включают в себя удобные ручки для переноски, а
-        также регулируемый плечевой ремень, который позволит вам комфортно
-        носить сумку на плече. Внутреннее пространство сумки разделено на
-        несколько отделений, что обеспечит удобную организацию ваших вещей.
-        EVOLUTION LARGE идеально подойдет как для работы, так и для повседневных
-        прогулок или деловых встреч. Ее стильный дизайн и практичность делают ее
-        универсальным аксессуаром, который дополнит любой образ и подчеркнет ваш
-        безупречный вкус.
-      </p>
+      <p class="aside__text">{{ data.description }}</p>
 
       <div class="div"></div>
 
@@ -136,7 +122,7 @@ onUnmounted(() => {
 
       <div class="dimentions">
         <div class="dimentions-item">
-          <p>12 см</p>
+          <p>{{ data.height }} мм</p>
           <span>(Высота)</span>
         </div>
 
@@ -155,22 +141,44 @@ onUnmounted(() => {
         </div>
 
         <div class="dimentions-item">
-          <p>43 см</p>
+          <p>{{ data.width }} мм</p>
           <span>(Ширина)</span>
         </div>
 
         <div class="dimentions-div">x</div>
 
         <div class="dimentions-item">
-          <p>30 см</p>
+          <p>{{ data.depth }} мм</p>
           <span>(Глубина)</span>
         </div>
       </div>
 
       <ul class="materials">
-        <li class="material-item" v-for="item in materials" :key="item.id">
-          <p class="material-title">{{ item.title }}</p>
-          <p class="material-value">{{ item.material }}</p>
+        <li class="material-item" v-if="data.materials?.length > 0">
+          <p class="material-title">Материал</p>
+          <p class="material-value">{{ data.materials[0] }}</p>
+        </li>
+
+        <li class="material-item" v-if="data.linings?.length > 0">
+          <p class="material-title">Подкладка</p>
+          <p class="material-value">{{ data.linings[0] }}</p>
+        </li>
+
+        <li class="material-item" v-if="data.colors?.length > 0">
+          <p class="material-title">Цвет</p>
+          <p class="material-value">
+            <span v-for="color in data.colors">{{ color }}</span>
+          </p>
+        </li>
+
+        <li class="material-item">
+          <p class="material-title">Артикул</p>
+          <p class="material-value">{{ data.vendor_code }}</p>
+        </li>
+
+        <li class="material-item">
+          <p class="material-title">Вес</p>
+          <p class="material-value">{{ data.weight }} г</p>
         </li>
       </ul>
     </div>
@@ -184,6 +192,7 @@ onUnmounted(() => {
   width: 100%;
   height: 120vh;
   right: -100%;
+  overflow-y: auto;
   top: -100px;
   z-index: 50;
   transition: all 0.3s ease-in-out;

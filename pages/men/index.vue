@@ -1,9 +1,6 @@
 <script setup>
-const { all: getProduct } = useGetProductsStore();
 const { all: getCategories } = useCategoriesStore();
-const { products } = storeToRefs(useGetProductsStore());
 const { categories } = storeToRefs(useCategoriesStore());
-getProduct();
 getCategories();
 </script>
 
@@ -121,6 +118,7 @@ getCategories();
         :cat_id="cat.id"
         v-for="cat in categories"
         :key="cat.id"
+        :sex="'man'"
       />
     </section>
 

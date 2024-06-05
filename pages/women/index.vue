@@ -1,9 +1,9 @@
 <script setup>
-const { allWomen: getProduct } = useGetProductsStore();
+// const { allWomen: getProduct } = useGetProductsStore();
 const { all: getCategories } = useCategoriesStore();
-const { products } = storeToRefs(useGetProductsStore());
+// const { products } = storeToRefs(useGetProductsStore());
 const { categories } = storeToRefs(useCategoriesStore());
-getProduct();
+// getProduct();
 getCategories();
 </script>
 
@@ -113,6 +113,7 @@ getCategories();
 
     <section class="category">
       <SectionsCategorySlider
+        sex="woman"
         :count="categories.length"
         :title="cat.title"
         :slug="cat.slug"

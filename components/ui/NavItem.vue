@@ -49,7 +49,7 @@ onMounted(() => {
           opacity: 0,
           stagger: 0.02,
         },
-        "<",
+        "<"
       );
   }, header.value);
 });
@@ -76,7 +76,7 @@ onUnmounted(() => {
           <nav class="megamenu__list">
             <NuxtLink
               class="link link-anim"
-              :to="link.slug"
+              :to="`${data.slug}/${link.slug}`"
               v-for="link in data.links"
               :key="link.id"
               >{{ link.title }}

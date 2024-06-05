@@ -62,7 +62,7 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
-  ctx.revert(); // <- Easy Cleanup!
+  // ctx.revert(); // <- Easy Cleanup!
 });
 
 const activeNavCategory = ref("");

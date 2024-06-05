@@ -26,20 +26,22 @@ export const useGetProductsStore = defineStore("myGetProductsStore", () => {
     isLoading.value = false;
   };
 
-  // async getProductsByParams(sex, params) {
-  //   this.isLoading = true;
+  const getByCategory = async (sex, slug) => {
+    isLoading.value = true;
 
-  //   const res = await $fetch(
-  //     `http://45.135.234.37:80/api/v1/${sex}/products`,
-  //     {
-  //       body: params,
-  //     }
-  //   ).then((data) => {
-  //     this.products = data;
-  //   });
+    await $fetch(
+      `http://45.135.234.37:80/api/v1/${sex}/products?categories[]=${slug}`,
+      {
+        // query: {
+        //   "categories[]": [slug],
+        // },
+      }
+    ).then((data) => {
+      products.value = data;
+    });
 
-  //   this.isLoading = false;
-  // },
+    isLoading.value = false;
+  };
 
-  return { isLoading, products, all, allWomen };
+  return { isLoading, products, all, allWomen, getByCategory };
 });

@@ -12,20 +12,20 @@ await getCategories();
 // pageData.value = categories.value.filter((i) => i == slug);
 pageData.value = categories.value.filter((i) => i.slug == slug)[0];
 
-await getProduct("man", pageData.value.id);
+await getProduct("woman", pageData.value.id);
 </script>
 
 <template>
   <main>
     <section class="hero">
       <div class="container">
-        <h2 class="h2">Мужские {{ pageData.title }}</h2>
+        <h2 class="h2">Женские {{ pageData.title }}</h2>
 
         <div class="hero-filters">
           <nav class="hero-categories">
             <NuxtLink
               class="hero-filters-link"
-              :to="`/men/${item.slug}`"
+              :to="`/women/${item.slug}`"
               active-class="active"
               :key="item.id"
               v-for="item in categories"
