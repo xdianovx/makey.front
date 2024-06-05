@@ -3,6 +3,7 @@ import { useNavOpen } from "~/stores/navOpen.js";
 import { onMounted, onUnmounted } from "vue";
 import gsap from "gsap";
 import { useNavigationLinks } from "~/stores/navigationLinks.js";
+import MobileDropLink from "./ui/Header/MobileDropLink.vue";
 
 const linksStore = useNavigationLinks();
 const isOpenState = useNavOpen();
@@ -11,10 +12,6 @@ const { links } = storeToRefs(linksStore);
 let ctx;
 let tl;
 const nav = ref();
-const route = useRoute();
-// watch(route, () => {
-//   isOpenState.closeNav()
-// }, {immediate: true})
 
 onMounted(() => {
   ctx = gsap.context((self) => {
@@ -42,22 +39,7 @@ onUnmounted(() => {
     <div class="container">
       <div class="menu">
         <nav class="menu-wrap">
-          <div class="main-menu-cat" :key="item.id" v-for="item in links">
-            <p>{{ item.title }}</p>
-            <div class="chevron">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="white"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M10.3167 8.0013L5.41674 3.1013C5.25007 2.93464 5.16952 2.73741 5.17507 2.50964C5.18063 2.28186 5.26674 2.08464 5.43341 1.91797C5.60007 1.7513 5.7973 1.66797 6.02507 1.66797C6.25285 1.66797 6.45007 1.7513 6.61674 1.91797L11.7334 7.0513C11.8667 7.18464 11.9667 7.33464 12.0334 7.5013C12.1001 7.66797 12.1334 7.83464 12.1334 8.0013C12.1334 8.16797 12.1001 8.33463 12.0334 8.5013C11.9667 8.66797 11.8667 8.81797 11.7334 8.9513L6.60007 14.0846C6.43341 14.2513 6.23896 14.3319 6.01674 14.3263C5.79452 14.3207 5.60007 14.2346 5.43341 14.068C5.26674 13.9013 5.18341 13.7041 5.18341 13.4763C5.18341 13.2485 5.26674 13.0513 5.43341 12.8846L10.3167 8.0013Z"
-                />
-              </svg>
-            </div>
-          </div>
+          <MobileDropLink :key="item.id" v-for="item in links" :data="item" />
         </nav>
 
         <div class="menu-bottom">
@@ -151,19 +133,13 @@ onUnmounted(() => {
   display: flex;
   flex-direction: column;
   height: 100%;
+  gap: 48px;
 }
 
 .menu-wrap {
   display: flex;
   gap: 8px;
   flex-direction: column;
-}
-
-.main-menu-cat {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px 0;
-  line-height: 20px;
 }
 
 .menu-bottom {

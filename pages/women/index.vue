@@ -1,9 +1,6 @@
 <script setup>
-// const { allWomen: getProduct } = useGetProductsStore();
 const { all: getCategories } = useCategoriesStore();
-// const { products } = storeToRefs(useGetProductsStore());
 const { categories } = storeToRefs(useCategoriesStore());
-// getProduct();
 getCategories();
 </script>
 
