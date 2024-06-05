@@ -167,7 +167,7 @@ console.log(props.data);
         <li class="material-item" v-if="data.colors?.length > 0">
           <p class="material-title">Цвет</p>
           <p class="material-value">
-            <span v-for="color in data.colors">{{ color }}</span>
+            <span v-for="color in data.colors">{{ color.code }}</span>
           </p>
         </li>
 

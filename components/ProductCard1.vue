@@ -1,5 +1,15 @@
 <script setup>
 const props = defineProps(["data"]);
+import { Navigation } from "swiper/modules";
+
+const prev = ref(null);
+const next = ref(null);
+
+const activeOption = ref(0);
+
+const setActiveOption = (i) => {
+  activeOption.value = i;
+};
 </script>
 
 <template>
@@ -21,20 +31,52 @@ const props = defineProps(["data"]);
     </button>
 
     <div class="image">
-      <NuxtLink :to="`/product/${data.product_options[0].slug}`">
-        <img
-          :src="data.product_options[0].product_files[0]?.file"
-          alt="Product title"
-        />
-      </NuxtLink>
+      <Swiper
+        class="swiper"
+        :modules="[Navigation]"
+        :speed="400"
+        :spaceBetween="20"
+        :loop="true"
+        :navigation="{
+          prevEl: prev,
+          nextEl: next,
+        }"
+      >
+        <SwiperSlide
+          class="product-image-slide"
+          v-for="img in data.product_options[activeOption].product_files"
+        >
+          <NuxtLink
+            class="product-slide-link"
+            :to="`/product/${data.product_options[activeOption].slug}`"
+          >
+            <!-- <img :src="img.file" alt="Product title" /> -->
+            <!-- v-if="useGetFileExtention(img.file) == 'webp'" -->
+
+            <img
+              :src="img.file"
+              v-if="useGetFileExtention(img.file) == 'webp'"
+              alt=""
+            />
+
+            <video v-else playsinline autoplay loop muted>
+              <source :src="img.file" type="video/mp4" />
+            </video>
+          </NuxtLink>
+        </SwiperSlide>
+      </Swiper>
 
       <div class="colors">
-        <div class="color-item black active"></div>
-        <div class="color-item red"></div>
-        <div class="color-item gray"></div>
+        <div
+          class="color-item"
+          @click="setActiveOption(idx)"
+          :class="{ active: idx === activeOption }"
+          :style="{ background: color.colors[0]?.code }"
+          v-for="(color, idx) in data.product_options"
+        ></div>
       </div>
 
-      <button class="btn-prev">
+      <button class="btn-prev" ref="prev">
         <svg
           width="16"
           height="16"
@@ -47,7 +89,7 @@ const props = defineProps(["data"]);
           />
         </svg>
       </button>
-      <button class="btn-next">
+      <button class="btn-next" ref="next">
         <svg
           width="16"
           height="16"
@@ -91,6 +133,27 @@ const props = defineProps(["data"]);
     .btn-next {
       right: 0;
     }
+  }
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.product-slide-link {
+  display: block;
+  height: 100%;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+
+  video {
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
   }
 }
 

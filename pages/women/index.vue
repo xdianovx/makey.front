@@ -134,6 +134,7 @@ getCategories();
       </svg>
       <p>Фильтры</p>
     </button>
+
     <SectionsCatalogSeo />
 
     <Spacer />

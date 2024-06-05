@@ -1,16 +1,5 @@
-<template>
-  <NuxtLoadingIndicator color="#000" />
-  <div class="wrap">
-    <Header />
-    <slot />
-
-    <Footer />
-  </div>
-</template>
-
 <script setup>
 import { useNavOpen } from "~/stores/navOpen.js";
-import devServerLogs from "#app/plugins/dev-server-logs.js";
 import { useProductInfoOpen } from "~/stores/productInfo";
 
 const isNavOpenState = useNavOpen();
@@ -31,6 +20,17 @@ useHead({
   },
 });
 </script>
+
+<template>
+  <NuxtLoadingIndicator color="#000" />
+  <div class="wrap">
+    <Header />
+
+    <slot />
+
+    <Footer />
+  </div>
+</template>
 
 <style lang="scss">
 body {

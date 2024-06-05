@@ -11,10 +11,6 @@ const { getData } = useMyProductPageStore();
 const { data } = storeToRefs(useMyProductPageStore());
 const infoStore = useProductInfoOpen();
 getData(slug);
-
-const getFileExt = (item) => {
-  return item.file?.split(".").pop();
-};
 </script>
 
 <template>
@@ -42,7 +38,11 @@ const getFileExt = (item) => {
           data-fancybox="a"
           v-for="item in data.product_files"
         >
-          <img :src="item.file" alt="" v-if="getFileExt(item) == 'webp'" />
+          <img
+            :src="item.file"
+            alt=""
+            v-if="useGetFileExtention(item.file) == 'webp'"
+          />
 
           <video v-else playsinline autoplay loop muted>
             <source :src="item.file" type="video/mp4" />
