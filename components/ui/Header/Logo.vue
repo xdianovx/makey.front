@@ -1,5 +1,9 @@
 <template>
-  <NuxtLink to="/" class="header__logo" :class="{ black: !isHome }">
+  <NuxtLink
+    to="/"
+    class="header__logo"
+    :class="{ black: !isHome, active: isNavOpen }"
+  >
     <svg
       width="84"
       height="16"
@@ -38,6 +42,9 @@
 <script setup>
 const store = useIsHomeStore();
 const { isHome } = storeToRefs(store);
+
+const isOpenState = useNavOpen();
+const { isNavOpen } = storeToRefs(isOpenState);
 </script>
 
 <style lang="scss" scoped>
@@ -48,6 +55,10 @@ const { isHome } = storeToRefs(store);
 
   &.black {
     fill: $bgBLack;
+
+    &.active {
+      fill: $bgWhite;
+    }
   }
 }
 </style>
