@@ -26,7 +26,15 @@ getData(slug);
           :pagination="true"
         >
           <SwiperSlide v-for="item in data.product_files">
-            <img :src="item.file" alt="" />
+            <img
+              :src="item.file"
+              alt=""
+              v-if="useGetFileExtention(item.file) == 'webp'"
+            />
+
+            <video v-else playsinline autoplay loop muted>
+              <source :src="item.file" type="video/mp4" />
+            </video>
           </SwiperSlide>
         </Swiper>
       </div>
@@ -162,6 +170,10 @@ getData(slug);
     display: block;
     width: 100%;
     img {
+      width: 100%;
+    }
+
+    video {
       width: 100%;
     }
   }
@@ -323,6 +335,13 @@ getData(slug);
     }
 
     img {
+      height: 100%;
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    video {
       height: 100%;
       width: 100%;
       display: block;

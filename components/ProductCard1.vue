@@ -44,25 +44,24 @@ const setActiveOption = (i) => {
       >
         <SwiperSlide
           class="product-image-slide"
-          v-for="img in data.product_options[activeOption].product_files"
+          v-for="img in data.product_options[activeOption]?.product_files"
         >
-          <NuxtLink
-            class="product-slide-link"
-            :to="`/product/${data.product_options[activeOption].slug}`"
-          >
-            <!-- <img :src="img.file" alt="Product title" /> -->
-            <!-- v-if="useGetFileExtention(img.file) == 'webp'" -->
+          <ClientOnly>
+            <NuxtLink
+              class="product-slide-link"
+              :to="`/product/${data.product_options[activeOption]?.slug}`"
+            >
+              <img
+                :src="img.file"
+                v-if="useGetFileExtention(img.file) == 'webp'"
+                alt=""
+              />
 
-            <img
-              :src="img.file"
-              v-if="useGetFileExtention(img.file) == 'webp'"
-              alt=""
-            />
-
-            <video v-else playsinline autoplay loop muted>
-              <source :src="img.file" type="video/mp4" />
-            </video>
-          </NuxtLink>
+              <video v-else playsinline autoplay loop muted>
+                <source :src="img.file" type="video/mp4" />
+              </video>
+            </NuxtLink>
+          </ClientOnly>
         </SwiperSlide>
       </Swiper>
 
@@ -105,8 +104,10 @@ const setActiveOption = (i) => {
     </div>
 
     <div class="info">
-      <h3 class="title">{{ data.title }}</h3>
-      <div class="price">{{ data.product_options[0].price }} BYN</div>
+      <h3 class="title">{{ data?.title }}</h3>
+      <div class="price">
+        {{ data?.product_options[activeOption]?.price }} BYN
+      </div>
     </div>
   </div>
 </template>
